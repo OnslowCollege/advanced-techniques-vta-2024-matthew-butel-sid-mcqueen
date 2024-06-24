@@ -21,4 +21,7 @@ class UI(App):
         dir_name: str = os.path.dirname(abs_path)
         res_path: str = os.path.join(dir_name, "res")
         super().__init__(*args, static_file_path={"res": res_path})
+    
+    def main(self) -> GUI.VBox:
+        """GUI for the home screen."""
         
