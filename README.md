@@ -26,4 +26,11 @@ Run these commands in the Terminal:
 ```bash
 sudo apt update
 sudo apt install postgresql
+sudo service postgresql start
+```
+
+## How to connect to PostgreSQL
+
+```bash
+sudo su postgres -c psql template1
 ```
