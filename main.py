@@ -24,7 +24,7 @@ class UI(App):
     
     def main(self):
         """Run the site."""
-        
+    
     def home_screen(self):
         """GUI for the home screen"""
         
