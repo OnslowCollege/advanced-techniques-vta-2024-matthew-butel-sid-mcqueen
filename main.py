@@ -6,7 +6,7 @@ Date: 17 June - Present
 """
 
 # Imports
-import remi as GUI
+import remi.gui as GUI
 from remi import start, App
 
 
