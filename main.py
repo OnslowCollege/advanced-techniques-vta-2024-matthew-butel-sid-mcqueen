@@ -24,6 +24,7 @@ class UI(App):
     
     def main(self):
         """Run the site."""
+        return self.home_screen()
     
     def home_screen(self):
         """GUI for the home screen"""
@@ -31,7 +32,9 @@ class UI(App):
         self.home_screen_title: GUI.Label = GUI.Label("Wheels & Deals")
         self.go_to_catalogue: GUI.Button = GUI.Button("Go to Catalogue")
         self.create_account: GUI.Button = GUI.Button("Create an Account")
-        self.button_row: GUI.Hbox = GUI.Hbox([self.go_to_catalogue, self.create_account])
-        self.home_screen_final: GUI.Vbox = GUI.Vbox([self.home_screen_title, self.button_row])
+        self.button_row: GUI.HBox = GUI.HBox([self.go_to_catalogue, self.create_account])
+        self.home_screen_final: GUI.VBox = GUI.VBox([self.home_screen_title, self.button_row])
+
+        return self.home_screen_final
 
 start(UI)
