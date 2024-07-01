@@ -24,12 +24,13 @@ class UI(App):
     
     def main(self):
         """Run the site."""
+        return self.home_screen
     
     def home_screen(self):
         """GUI for the home screen"""
         
         self.home_screen_title: GUI.Label = GUI.Label("Auto Bazaar")
-        self.image = GUI.Image("/res:image.avif")
+        self.image = GUI.Image("/res:car_thing.png")
 
 
 start(UI)
