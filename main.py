@@ -24,13 +24,17 @@ class UI(App):
     
     def main(self):
         """Run the site."""
-        return self.home_screen
+        return self.home_screen()
     
     def home_screen(self):
         """GUI for the home screen"""
         
         self.home_screen_title: GUI.Label = GUI.Label("Auto Bazaar")
         self.image = GUI.Image("/res:car_thing.png")
-
+        self.catalogue: GUI.Button = GUI.Button("Go to catalogue")
+        self.account: GUI.Button = GUI.Button("Account settings")
+        self.buttons: GUI.HBox = GUI.HBox([self.catalogue, self.account])
+        self.home_screen_final: GUI.VBox = GUI.VBox([self.home_screen_title, self.image, self.buttons])
+        return self.home_screen_final
 
 start(UI)
