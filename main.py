@@ -24,4 +24,21 @@ class UI(App):
     
     def main(self) -> GUI.VBox:
         """GUI for the home screen."""
+        return self.home_screen()
+    
+    def home_screen(self):
+        """GUI for the home screen"""
         
+        self.home_screen_title: GUI.Label = GUI.Label("Buy a Car you know you'll love")
+        self.home_screen_title.style["height"] = "50px"
+        self.image = GUI.Image("/res:car_logo.png")
+        self.logotext = GUI.Label = GUI.Label("MOJO MOTORS")
+        self.catalogue: GUI.Button = GUI.Button("Go to catalogue")
+        self.account: GUI.Button = GUI.Button("Account settings")
+        self.buttons: GUI.HBox = GUI.VBox([self.catalogue, self.account])
+        self.home_screen_final: GUI.VBox = GUI.VBox([self.home_screen_title, self.buttons])
+        self.home_screen_logo: GUI.VBox = GUI.VBox([self.image, self.logotext])
+        self.home_screen_: GUI.HBox = GUI.HBox([self.home_screen_logo, self.home_screen_final])
+        return self.home_screen_
+
+start(UI)
