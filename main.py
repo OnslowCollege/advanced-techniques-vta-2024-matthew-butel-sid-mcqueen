@@ -24,21 +24,40 @@ class UI(App):
     
     def main(self) -> GUI.VBox:
         """GUI for the home screen."""
-        return self.home_screen()
+        self.ui_container: GUI.VBox = GUI.VBox()
+        self.ui_container.append(self.home_screen())
+        return self.ui_container
     
     def home_screen(self):
         """GUI for the home screen"""
         
+        # Create the features for the menu
         self.home_screen_title: GUI.Label = GUI.Label("Buy a Car you know you'll love")
         self.home_screen_title.style["height"] = "50px"
         self.image = GUI.Image("/res:car_logo.png")
-        self.logotext = GUI.Label = GUI.Label("MOJO MOTORS")
+        self.logotext = GUI.Label = GUI.Label("AUTO BAZAAR")
         self.catalogue: GUI.Button = GUI.Button("Go to catalogue")
         self.account: GUI.Button = GUI.Button("Account settings")
+        
+        # Put them into H and VBox's
         self.buttons: GUI.HBox = GUI.VBox([self.catalogue, self.account])
         self.home_screen_final: GUI.VBox = GUI.VBox([self.home_screen_title, self.buttons])
         self.home_screen_logo: GUI.VBox = GUI.VBox([self.image, self.logotext])
         self.home_screen_: GUI.HBox = GUI.HBox([self.home_screen_logo, self.home_screen_final])
+        
+        self.catalogue.set_enabled(False)
+
+        self.account.onclick(self.account_page)
+        self.catalogue.onclick(self.catalogue_page)
         return self.home_screen_
+    
+    def account_page(self):
+        """GUI for the account info page"""
+
+        self.set_name: GUI.Label = GUI.Label("")
+        
+        
+        self.ui_container.empty()
+        self.ui_container
 
 start(UI)
