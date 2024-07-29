@@ -8,7 +8,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Base
 
 pg_engine = create_engine(
-    "posthgresql://postgres:123456@localhost:5432/postgres"
+    "postgresql://postgres:123456@localhost:5432/postgres"
 )
 
 
@@ -19,3 +19,7 @@ class Cars(Base):
 
     transmission: Mapped[str] = mapped_column(str(255))
     make: Mapped[str] = mapped_column(str(255))
+    model: Mapped[str] = mapped_column(str(255))
+    year_made: Mapped[str] = mapped_column(str(255))
+    mileage: Mapped[int] = mapped_column(primary_key=True)
+    price: Mapped[int] = mapped_column(primary_key=True)
