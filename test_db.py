@@ -22,5 +22,5 @@ class Cars(Base):
     make: Mapped[str] = mapped_column(str(255))
     model: Mapped[str] = mapped_column(str(255))
     year_made: Mapped[str] = mapped_column(str(255))
-    mileage: Mapped[int] = mapped_column(primary_key=True)
-    price: Mapped[int] = mapped_column(primary_key=True)
+    mileage: Mapped[int] = mapped_column(int)
+    price: Mapped[int] = mapped_column(int)
