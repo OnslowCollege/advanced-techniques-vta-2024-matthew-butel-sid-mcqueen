@@ -47,17 +47,16 @@ class UI(App):
         
         self.catalogue.set_enabled(False)
 
-        self.account.onclick(self.account_page)
-        self.catalogue.onclick(self.catalogue_page)
+        self.account.onclick.do(self.account_page)
+        # self.catalogue.onclick.do(self.catalogue_page)
         return self.home_screen_
     
-    def account_page(self):
+    def account_page(self, button: GUI.Button):
         """GUI for the account info page"""
-
-        self.set_name: GUI.Label = GUI.Label("")
         
         
         self.ui_container.empty()
-        self.ui_container
+        self.ui_container.append()
+        return self.ui_container
 
 start(UI)
