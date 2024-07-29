@@ -54,9 +54,20 @@ class UI(App):
     def account_page(self, button: GUI.Button):
         """GUI for the account info page"""
         
-        
         self.ui_container.empty()
-        self.ui_container.append()
+        
+        self.account_title = GUI.Label("")
+        self.account_title.get_text("Account Details")
+        self.account_title.style["height"] = "50px"
+        
+        self.name_input = GUI.TextInput("First and Last Name")
+
+        self.return_button = GUI.Button("Return To Home Screen")
+        self.catalogue_button = GUI.Button("Proceed To Catalogue")
+        self.catalogue_button.set_enabled(False)
+        self.button_box = GUI.HBox([self.return_button, self.catalogue_button])
+        self.account_page_vbox = GUI.VBox([self.account_title, self.name_input, self.button_box])
+        self.ui_container.append(self.account_page_vbox)
         return self.ui_container
 
 start(UI)
