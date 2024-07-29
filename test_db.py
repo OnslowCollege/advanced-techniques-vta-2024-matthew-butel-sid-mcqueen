@@ -10,8 +10,10 @@ pg_engine = create_engine(
     "postgresql://postgres:123456@localhost:5432/postgres"
 )
 
+class Base(DeclarativeBase):
+    pass
 
-class Cars(DeclarativeBase):
+class Cars(Base):
     """Go away pep8."""
 
     __tablename__ = "cars"
