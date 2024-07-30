@@ -12,7 +12,6 @@ from sqlalchemy.orm import (
 pg_engine = create_engine(
     "postgresql://postgres:123456@localhost:5432/postgres"
 )
-pg_engine.connect()
 
 class Base(DeclarativeBase):
     pass
@@ -33,3 +32,8 @@ class Cars(Base):
 Base.metadata.create_all(pg_engine)
 
 query = select(Cars)
+
+with Session(pg_engine) as session:
+    result = session.execute(query)
+    for row in result:
+        print(row)
