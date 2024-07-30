@@ -25,3 +25,5 @@ class Cars(Base):
     year_made: Mapped[str] = mapped_column(String(255))
     mileage: Mapped[int] = mapped_column(Integer)
     price: Mapped[int] = mapped_column(Integer)
+
+Base.metadata.create_all(pg_engine)
