@@ -18,7 +18,7 @@ class Cars(Base):
 
     __tablename__ = "cars"
 
-    id: Mapped[int] = mapped_column(int, primary_key=True)
+    ids: Mapped[int] = mapped_column(int, primary_key=True)
     transmission: Mapped[str] = mapped_column(str(255))
     make: Mapped[str] = mapped_column(str(255))
     model: Mapped[str] = mapped_column(str(255))
