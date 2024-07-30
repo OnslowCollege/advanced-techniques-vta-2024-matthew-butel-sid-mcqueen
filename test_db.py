@@ -1,6 +1,6 @@
 """OKOKOKOK."""
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Integer, String
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
@@ -18,10 +18,10 @@ class Cars(Base):
 
     __tablename__ = "cars"
 
-    ids: Mapped[int] = mapped_column(int, primary_key=True)
-    transmission: Mapped[str] = mapped_column(str(255))
-    make: Mapped[str] = mapped_column(str(255))
-    model: Mapped[str] = mapped_column(str(255))
-    year_made: Mapped[str] = mapped_column(str(255))
-    mileage: Mapped[int] = mapped_column(int)
-    price: Mapped[int] = mapped_column(int)
+    ids: Mapped[int] = mapped_column(Integer, primary_key=True)
+    transmission: Mapped[str] = mapped_column(String(255))
+    make: Mapped[str] = mapped_column(String(255))
+    model: Mapped[str] = mapped_column(String(255))
+    year_made: Mapped[str] = mapped_column(String(255))
+    mileage: Mapped[int] = mapped_column(Integer)
+    price: Mapped[int] = mapped_column(Integer)
