@@ -64,12 +64,41 @@ class UI(App):
         name_input = GUI.TextInput()
         user_name = GUI.HBox([user_name_question, name_input])
 
+        card_detail_title = GUI.Label("Enter Card Details Below")
+        card_number = GUI.Label("Card Number:")
+        number_input = GUI.TextInput()
+        card_scc = GUI.Label("SCC:")
+        scc_input = GUI.TextInput()
+        card_number_row = GUI.HBox([card_number, number_input, card_scc, scc_input])
+        card_name = GUI.Label("Name on Card:")
+        card_name_input = GUI.TextInput()
+        card_name_row = GUI.HBox([card_name, card_name_input])
+        
+        card_details = GUI.VBox([card_detail_title, card_number_row, card_name_row])
+
         self.return_button = GUI.Button("Return To Home Screen")
         self.catalogue_button = GUI.Button("Proceed To Catalogue")
         self.catalogue_button.set_enabled(False)
+
+        self.return_button.onclick.do(self.onclick_return)
+
+        number_input.onchange.do(self.onchange_card_details)
+        scc_input.onchange.do(self.onchange_card_details)
+        card_name_input.onchange.do(self.onchange_card_details)
+        
         button_box = GUI.HBox([self.return_button, self.catalogue_button])
-        self.account_page_vbox = GUI.VBox([account_title, user_name, button_box])
+        self.account_page_vbox = GUI.VBox([self.logotext, account_title, user_name, card_details, button_box, self.image])
         self.ui_container.append(self.account_page_vbox)
         return self.ui_container
 
+    def onclick_return(self, button: GUI.Button):
+        """Return user to home screen."""
+
+        self.ui_container.empty()
+        self.ui_container.append(self.home_screen())
+
+    def onchange_card_details(self):
+        """Make the catalogue button pressable once the user enters card details."""
+
+        
 start(UI)
