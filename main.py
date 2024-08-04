@@ -82,7 +82,7 @@ class UI(App):
         self.home_screen_title: GUI.Label = GUI.Label("Buy a Car you know you'll love")
         self.home_screen_title.style["height"] = "50px"
         self.image = GUI.Image("/res:car_logo.png")
-        self.logotext = GUI.Label = GUI.Label("MOJO MOTORS")
+        self.logotext = GUI.Label = GUI.Label("AUTO BAZAAR")
         self.catalogue: GUI.Button = GUI.Button("Go to catalogue")
         self.account: GUI.Button = GUI.Button("Account settings")
         
@@ -103,9 +103,9 @@ class UI(App):
         
         self.ui_container.empty()
         
-        account_title: GUI.Label = GUI.Label("")
-        account_title.set_text("Account Details")
-        account_title.style["height"] = "50px"
+        #self.account_title: GUI.Label = GUI.Label("")
+        #self.account_title.set_text("Account Details")
+        #self.account_title.style["height"] = "50px"
         
         username_question = GUI.Label("Username here")
         self.name_input = GUI.TextInput()
@@ -137,7 +137,7 @@ class UI(App):
         
         
         button_box = GUI.HBox([self.return_button, self.catalogue_button])
-        self.account_page_vbox = GUI.VBox([self.logotext, account_title, user_name, card_details, self.signup_button, button_box, self.image])
+        self.account_page_vbox = GUI.VBox([self.logotext, user_name, card_details, self.signup_button, button_box, self.image])
         self.ui_container.append(self.account_page_vbox)
         return self.ui_container
 
