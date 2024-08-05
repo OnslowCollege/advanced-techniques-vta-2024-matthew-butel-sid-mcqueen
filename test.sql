@@ -1,5 +1,5 @@
 CREATE DATABASE carsDB
-CREATE TABLE(
+CREATE TABLE cars (
     transmission varchar 255 NOT NULL,
     make varchar 255 NOT NULL,
     model varchar 255 NOT NULL,
@@ -7,7 +7,12 @@ CREATE TABLE(
     price int NOT NULL,
     mileage int NOT NULL
 )
-INSERT INTO carsDB
+
+ALTER TABLE cars
+ADD ids SERIAL;
+
+
+INSERT INTO cars
 VALUES 
 ("Automatic", "Audi", "sedan", "2005", 9500, 123049),
 ("Automatic", "Mazda", "Hatchback", "1991", 4300, 175000),

@@ -34,3 +34,9 @@ sudo service postgresql start
 ```bash
 sudo su postgres -c psql template1
 ```
+
+## How to check server status and start it 
+
+service postgresql status
+
+sudo service postgresql start
