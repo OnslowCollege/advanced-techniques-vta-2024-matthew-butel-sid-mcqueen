@@ -59,6 +59,7 @@ class UI(App):
     
     data: services = services()
     logged_in_user: user_account = ()
+    
 
     def __init__(self, *args):
         """Make the app work."""
@@ -71,6 +72,8 @@ class UI(App):
     
     def main(self) -> GUI.VBox:
         """GUI for the home screen."""
+        self.cart_label = GUI.Label("")
+        self.cart = 0
         self.ui_container: GUI.VBox = GUI.VBox()
         self.ui_container.append(self.home_screen())
         return self.ui_container
@@ -182,10 +185,11 @@ class UI(App):
             car_counter = car_counter + 1
             place_holder_car = GUI.Label("Car" + str(car_counter))
             add_to_cart = GUI.Button("Add To Cart")
-            remove_from_cart = GUI.Button("Remove From Cart")
-            car_row = GUI.HBox([place_holder_car, add_to_cart, remove_from_cart])
-            remove_from_cart.set_enabled(False)
+            self.remove_from_cart = GUI.Button("Remove From Cart")
+            car_row = GUI.HBox([place_holder_car, add_to_cart, self.remove_from_cart])
+            self.remove_from_cart.set_enabled(False)
             catalogue_box.append(car_row)
+            add_to_cart.onclick.do(self.onclick_addtocart)
 
         self.account.onclick.do(self.account_page)
         return_button.onclick.do(self.onclick_return)
@@ -195,6 +199,13 @@ class UI(App):
         self.ui_container.empty()
         self.ui_container.append(self.catalogue_page_vbox)
 
+    def onclick_addtocart(self, button: GUI.Button):
+        """When the user presses add to cart, add to cart and make remove pressable."""
+
+        self.remove_from_cart.set_enabled(True)
+        self.cart = self.cart + 1
+        self.cart_label.set_text("car")
+    
     def view_cart_page(self, button: GUI.Button):
         """When the user chooses to view cart open they go to this page."""
 
@@ -202,7 +213,7 @@ class UI(App):
         purchase_button = GUI.Button("Purchase")
         back_button = GUI.Button("Back To Catalogue")
         button_row = GUI.HBox([purchase_button, back_button])
-        view_cart_vbox = GUI.VBox([cart_title, button_row])
+        view_cart_vbox = GUI.VBox([cart_title, self.cart_label, button_row])
         back_button.onclick.do(self.catalogue_page)
         self.ui_container.empty()
         self.ui_container.append(view_cart_vbox)
