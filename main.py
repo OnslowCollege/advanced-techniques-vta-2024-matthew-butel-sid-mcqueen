@@ -85,7 +85,7 @@ class UI(App):
         self.home_screen_title: GUI.Label = GUI.Label("Buy a Car you know you'll love")
         self.home_screen_title.style["height"] = "50px"
         self.image = GUI.Image("/res:car_logo.png")
-        self.logotext = GUI.Label = GUI.Label("AUTO BAZAAR")
+        self.logotext = GUI.Label("AUTO BAZAAR")
         self.catalogue: GUI.Button = GUI.Button("Go to catalogue")
         self.account: GUI.Button = GUI.Button("Account settings")
         
