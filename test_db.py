@@ -7,6 +7,7 @@ from sqlalchemy.orm import (
     mapped_column,
     relationship,
     Session,
+    c,
 )
 
 pg_engine = create_engine(
