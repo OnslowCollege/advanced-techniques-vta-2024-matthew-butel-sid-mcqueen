@@ -103,8 +103,7 @@ class UI(App):
         
         self.ui_container.empty()
         
-        account_title: GUI.Label = GUI.Label("")
-        account_title.set_text("Account Details")
+        account_title: GUI.Label = GUI.Label("Account Details")
         
         username_question = GUI.Label("Username here")
         self.name_input = GUI.TextInput()
