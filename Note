@@ -1,0 +1,8 @@
+- research a python library that can connect to Postgres
+- install the library using pip (or Pip Manager)
+- create a connection object that connects to the database using the same credentials as the connection that you already use
+- depending on what kind of library you choose, you either:
+    - write SQL queries to get the data from the database,
+    - or you use methods in the library that can do the same thing
+- once you get the data, you check it is valid, then use it in the program
+- 

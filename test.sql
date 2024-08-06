@@ -1,4 +1,4 @@
-CREATE DATABASE carsDB
+CREATE DATABASE carsDB;
 CREATE TABLE cars (
     transmission varchar 255 NOT NULL,
     make varchar 255 NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE cars (
     year_made varchar 255 NOT NULL,
     price int NOT NULL,
     mileage int NOT NULL
-)
+);
 
 ALTER TABLE cars
 ADD ids SERIAL;
@@ -64,4 +64,4 @@ VALUES
 ("Manual", "Ford", "Ute", "2018", 120000, 38000),
 ("Manual", "Suzuki", "Hatchback", "2010", 160000, 6900),
 ("Manual", "Toyota", "Sedan", "1990", 263000, 2420),
-("Manual", "Holden", "Ute", "2003", 49000, 45000),
+("Manual", "Holden", "Ute", "2003", 49000, 45000);
