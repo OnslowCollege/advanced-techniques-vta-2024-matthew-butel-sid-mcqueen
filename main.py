@@ -59,6 +59,7 @@ class UI(App):
     
     data: services = services()
     logged_in_user: user_account = ()
+    
 
     def __init__(self, *args):
         """Make the app work."""
@@ -71,6 +72,8 @@ class UI(App):
     
     def main(self) -> GUI.VBox:
         """GUI for the home screen."""
+        self.cart_label = GUI.Label("")
+        self.cart = 0
         self.ui_container: GUI.VBox = GUI.VBox()
         self.ui_container.append(self.home_screen())
         return self.ui_container
@@ -92,10 +95,9 @@ class UI(App):
         self.home_screen_logo: GUI.VBox = GUI.VBox([self.image, self.logotext])
         self.home_screen_: GUI.HBox = GUI.HBox([self.home_screen_logo, self.home_screen_final])
         
-        self.catalogue.set_enabled(False)
 
         self.account.onclick.do(self.account_page)
-        # self.catalogue.onclick.do(self.catalogue_page)
+        self.catalogue.onclick.do(self.catalogue_page)
         return self.home_screen_
     
     def account_page(self, button: GUI.Button):
@@ -131,6 +133,7 @@ class UI(App):
 
         self.signup_button.onclick.do(self.onclick_signup)
         self.return_button.onclick.do(self.onclick_return)
+        self.catalogue_button.onclick.do(self.catalogue_page)
 
         
         
@@ -157,5 +160,60 @@ class UI(App):
         card_name = self.card_name_input.get_value()
         self.logged_in_user = self.data.users.sign_up(username, password, card_number, scc, expire_date, card_name)
 
+    def catalogue_page(self, button: GUI.Label):
+        """The catalogue for the site."""
+
+        catalogue_title = GUI.Label("USED CAR CATALOGUE")
+        catalogue_title_message = GUI.Label("Welcome to the Bazaar")
+
+        title_hbox = GUI.HBox([self.logotext, catalogue_title])
+        title = GUI.VBox([title_hbox, catalogue_title_message])
+
+        view_cart = GUI.Button("View Cart")
+        return_button = GUI.Button("Return to Home")
+        button_box = GUI.VBox([self.account, return_button, view_cart])
+
+        upper_page = GUI.HBox([title, button_box])
+
+        catalogue_placeholder: list = ["car1", "car2", "car3", "car4", "car5"]
+        car_counter = 0
+        catalogue_box = GUI.VBox([])
+
+        for car in catalogue_placeholder:
+            car_counter = car_counter + 1
+            place_holder_car = GUI.Label("Car" + str(car_counter))
+            add_to_cart = GUI.Button("Add To Cart")
+            self.remove_from_cart = GUI.Button("Remove From Cart")
+            car_row = GUI.HBox([place_holder_car, add_to_cart, self.remove_from_cart])
+            self.remove_from_cart.set_enabled(False)
+            catalogue_box.append(car_row)
+            add_to_cart.onclick.do(self.onclick_addtocart)
+
+        self.account.onclick.do(self.account_page)
+        return_button.onclick.do(self.onclick_return)
+        view_cart.onclick.do(self.view_cart_page)
+
+        self.catalogue_page_vbox = GUI.VBox([upper_page, catalogue_box])
+        self.ui_container.empty()
+        self.ui_container.append(self.catalogue_page_vbox)
+
+    def onclick_addtocart(self, button: GUI.Button):
+        """When the user presses add to cart, add to cart and make remove pressable."""
+
+        self.remove_from_cart.set_enabled(True)
+        self.cart = self.cart + 1
+        self.cart_label.set_text("car")
+    
+    def view_cart_page(self, button: GUI.Button):
+        """When the user chooses to view cart open they go to this page."""
+
+        cart_title = GUI.Label("Your Cart")
+        purchase_button = GUI.Button("Purchase")
+        back_button = GUI.Button("Back To Catalogue")
+        button_row = GUI.HBox([purchase_button, back_button])
+        view_cart_vbox = GUI.VBox([cart_title, self.cart_label, button_row])
+        back_button.onclick.do(self.catalogue_page)
+        self.ui_container.empty()
+        self.ui_container.append(view_cart_vbox)
 
 start(UI)
