@@ -38,12 +38,12 @@ class Cars(Base):
         return f"{self.make}, {self.model}, {self.year_made}"
 
 
-
 Base.metadata.create_all(pg_engine)
 
 query = select(Cars)
 cars_make: list[str] = [""]
 cars_info: list[str] = [""]
+
 with Session(pg_engine) as session:
     result = session.execute(query)
     for row in result:
