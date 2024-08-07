@@ -50,21 +50,21 @@ class Cars(Base):
         """Sid Make this return all the cars from the database."""
 
         """Retrieve all cars from the database."""
-        # with Session(self.engine) as session:
-        #     query = select(Cars)
-        #     result = session.execute(query)
-        #     cars = []
-        #     for row in result.scalars():
-        #         cars.append(Car(
-        #             transmission=row.transmission,
-        #             make=row.make,
-        #             model=row.model,
-        #             year_made=row.year_made,
-        #             mileage=row.mileage,
-        #             price=row.price,
-        #             ids=row.ids
-        #         ))
-        # return cars
+        with Session(self.engine) as session:
+            query = select(Cars)
+            result = session.execute(query)
+            cars = []
+            for row in result.scalars():
+                cars.append(Car(
+                    transmission=row.transmission,
+                    make=row.make,
+                    model=row.model,
+                    year_made=row.year_made,
+                    mileage=row.mileage,
+                    price=row.price,
+                    ids=row.ids
+                ))
+        return cars
 
         # Return some test data
         return [
@@ -89,9 +89,9 @@ class Cars(Base):
 
 
 #Base.metadata.create_all(pg_engine)
-
-query = select(Cars)
-
+#
+#query = select(Cars)
+#
 #with Session(pg_engine) as session:
 #    result = session.execute(query)
 #    for row in result:
