@@ -35,7 +35,7 @@ class Cars(Base):
 
     def __repr__(self) -> str:
         """Go away pep8."""
-        return f"{self.make}, {self.model}, {self.year_made}, "
+        return f"{self.make}, {self.model}, {self.year_made}"
 
 
 Base.metadata.create_all(pg_engine)
