@@ -42,12 +42,13 @@ Base.metadata.create_all(pg_engine)
 
 query = select(Cars)
 cars_make: list[str] = []
-cars_info: list[str] = []
-cars_info_transision: str = ""
+cars_info: str = ""
+cars_help: str = ""
 with Session(pg_engine) as session:
     result = session.execute(query)
     for row in result:
         if row != "":
             cars_info = row[0]
-            cars_make.append(row[0])
+            cars_help = cars_info.split(", ")
+            cars_make.append(cars_help)
     print(cars_make[0])
