@@ -38,8 +38,7 @@ class user_service():
         self.accounts.append(user)
         return user
 
-
-    def sign_in():
+    def sign_in(self):
         """Takes username and password and returns account."""
 
 
@@ -101,7 +100,7 @@ class UI(App):
         return self.home_screen_
     
     def account_page(self, button: GUI.Button):
-        """GUI for the account info page"""
+        """GUI for the account info page."""
         
         self.ui_container.empty()
         

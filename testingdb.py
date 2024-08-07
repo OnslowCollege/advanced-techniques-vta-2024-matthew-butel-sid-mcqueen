@@ -9,12 +9,15 @@ from sqlalchemy.orm import (
     Session,
 )
 
-#pg_engine = create_engine(
-#    "postgresql://postgres:123456@localhost:5432/postgres"
-#)
+pg_engine = create_engine(
+    "postgresql://postgres:123456@localhost:5432/postgres"
+)
 
 class Car:
+    """."""
+
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
+        """."""
         self.ids = ids
         self.transmission = transmission
         self.make = make
@@ -24,9 +27,12 @@ class Car:
         self.price = price
 
     def __repr__(self) -> str:
+        """."""
         return f"{self.make} {self.model} {self.year_made}"
 
 class Base(DeclarativeBase):
+    """."""
+
     pass
 
 class Cars(Base):
@@ -88,11 +94,11 @@ class Cars(Base):
 
 
 
-#Base.metadata.create_all(pg_engine)
+Base.metadata.create_all(pg_engine)
 
 query = select(Cars)
 
-#with Session(pg_engine) as session:
-#    result = session.execute(query)
-#    for row in result:
-#        print(row)
+with Session(pg_engine) as session:
+    result = session.execute(query)
+    for row in result:
+        print(row)
