@@ -35,7 +35,7 @@ class Cars(Base):
 
     def __repr__(self) -> str:
         """Go away pep8."""
-        return f"{self.make} {self.model} {self.year_made}"
+        return f"{self.make}, {self.model}, {self.year_made}"
 
 
 
@@ -47,6 +47,6 @@ cars_info: list[str] = [""]
 with Session(pg_engine) as session:
     result = session.execute(query)
     for row in result:
-        cars_info = row.split()
+        cars_info = row.split(", ")
         cars_make.append(cars_info[0])
     print(cars_make)
