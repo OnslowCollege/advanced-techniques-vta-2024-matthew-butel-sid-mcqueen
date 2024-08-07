@@ -9,9 +9,9 @@ from sqlalchemy.orm import (
     Session,
 )
 
-#pg_engine = create_engine(
-#    "postgresql://postgres:123456@localhost:5432/postgres"
-#)
+pg_engine = create_engine(
+    "postgresql://postgres:123456@localhost:5432/postgres"
+)
 
 class Car:
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
@@ -50,21 +50,21 @@ class Cars(Base):
         """Sid Make this return all the cars from the database."""
 
         """Retrieve all cars from the database."""
-        with Session(self.engine) as session:
-            query = select(Cars)
-            result = session.execute(query)
-            cars = []
-            for row in result.scalars():
-                cars.append(Car(
-                    transmission=row.transmission,
-                    make=row.make,
-                    model=row.model,
-                    year_made=row.year_made,
-                    mileage=row.mileage,
-                    price=row.price,
-                    ids=row.ids
-                ))
-        return cars
+        # with Session(self.engine) as session:
+        #     query = select(Cars)
+        #     result = session.execute(query)
+        #     cars = []
+        #     for row in result.scalars():
+        #         cars.append(Car(
+        #             transmission=row.transmission,
+        #             make=row.make,
+        #             model=row.model,
+        #             year_made=row.year_made,
+        #             mileage=row.mileage,
+        #             price=row.price,
+        #             ids=row.ids
+        #         ))
+        # return cars
 
         # Return some test data
         return [
@@ -88,11 +88,11 @@ class Cars(Base):
 
 
 
-#Base.metadata.create_all(pg_engine)
-#
-#query = select(Cars)
-#
-#with Session(pg_engine) as session:
-#    result = session.execute(query)
-#    for row in result:
-#        print(row)
+Base.metadata.create_all(pg_engine)
+
+query = select(Cars)
+
+with Session(pg_engine) as session:
+    result = session.execute(query)
+    for row in result:
+        print(row)
