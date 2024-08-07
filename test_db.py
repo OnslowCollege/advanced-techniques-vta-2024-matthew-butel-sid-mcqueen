@@ -45,7 +45,6 @@ cars_make: list[str] = [""]
 cars_info: list[str] = [""]
 with Session(pg_engine) as session:
     result = session.execute(query)
-    print(cars_info)
     for row in result:
         cars_make.append(row[0])
-        print(row)
+    print(cars_make[1])
