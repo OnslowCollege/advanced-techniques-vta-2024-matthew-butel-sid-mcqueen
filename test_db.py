@@ -29,9 +29,14 @@ class Cars(Base):
     mileage: Mapped[int] = mapped_column(Integer)
     price: Mapped[int] = mapped_column(Integer)
 
+    # def __repr__(self) -> str:
+    #    """Go away pep8."""
+    #    return f"{self.make} {self.model} {self.year_made}"
+
     def __repr__(self) -> str:
         """Go away pep8."""
         return f"{self.make} {self.model} {self.year_made}"
+
 
 
 Base.metadata.create_all(pg_engine)
