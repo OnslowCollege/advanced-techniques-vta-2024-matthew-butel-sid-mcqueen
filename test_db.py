@@ -48,4 +48,4 @@ with Session(pg_engine) as session:
     print(cars_info)
     for row in result:
         cars_make.append(row[0])
-    print(cars_make)
+        print(row)
