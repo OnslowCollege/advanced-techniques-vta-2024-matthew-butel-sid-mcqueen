@@ -47,6 +47,5 @@ with Session(pg_engine) as session:
     result = session.execute(query)
     print(cars_info)
     for row in result:
-        cars_info == row.split(", ")
-        cars_make.append(cars_info[0])
+        cars_make.append(row[0])
     print(cars_make)
