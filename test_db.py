@@ -33,7 +33,7 @@ class Cars(Base):
     #    """Go away pep8."""
     #    return f"{self.make} {self.model} {self.year_made}"
 
-    def __repr__(self) -> tuple[any]:
+    def __repr__(self) -> str:
         """Go away pep8."""
         return f"{self.make}, {self.model}, {self.year_made}"
 
