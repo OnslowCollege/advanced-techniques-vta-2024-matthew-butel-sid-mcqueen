@@ -33,7 +33,7 @@ class Cars(Base):
     #    """Go away pep8."""
     #    return f"{self.make} {self.model} {self.year_made}"
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> tuple:
         """Go away pep8."""
         return f"{self.make}, {self.model}, {self.year_made}"
 
@@ -47,6 +47,7 @@ with Session(pg_engine) as session:
     result = session.execute(query)
     for row in result:
         if row != "":
-            print(row)
+            cars_info = row[1]
+            print(cars_info)
             cars_make.append(row[0])
     # print(cars_make)
