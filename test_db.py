@@ -42,6 +42,8 @@ Base.metadata.create_all(pg_engine)
 
 query = select(Cars)
 cars_make: list[str] = []
+cars_model: list[str] = []
+cars_year_made: list[str] = []
 cars_info: str = ""
 cars_help: list[str] = []
 with Session(pg_engine) as session:
