@@ -52,10 +52,12 @@ with Session(pg_engine) as session:
     for row in result:
         if row != "":
             cars_info = row[0]
+            print(cars_info.ids)
+            print(cars_info.transmission)
             print(cars_info.make)
             print(cars_info.price)
+            print(cars_info.model)
+            print(cars_info.year_made)
+            print(cars_info.mileage)
+            print(cars_info.price)
             cars_help = str(cars_info).split(", ")
-            cars_transmission.append(cars_help[0])
-            cars_make.append(cars_help[1])
-            cars_model.append(cars_help[2])
-            cars_year_made.append(cars_help[3])
