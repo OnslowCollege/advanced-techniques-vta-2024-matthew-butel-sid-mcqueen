@@ -53,4 +53,8 @@ with Session(pg_engine) as session:
             cars_info = row[0]
             cars_help = str(cars_info).split(", ")
             cars_make.append(cars_help[0])
+            cars_model.append(cars_help[1])
+            cars_year_made.append(cars_help[2])
     print(cars_make)
+    print(cars_model)
+    print(cars_year_made)
