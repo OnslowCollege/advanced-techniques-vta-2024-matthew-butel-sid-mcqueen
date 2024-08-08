@@ -35,12 +35,13 @@ class Cars(Base):
 
     def __repr__(self) -> str:
         """Go away pep8."""
-        return f"{self.make}, {self.model}, {self.year_made}"
+        return f" {self.transmission}, {self.make}, {self.model}, {self.year_made}"
 
 
 Base.metadata.create_all(pg_engine)
 
 query = select(Cars)
+cars_transmission: list[str] = []
 cars_make: list[str] = []
 cars_model: list[str] = []
 cars_year_made: list[str] = []
@@ -52,9 +53,10 @@ with Session(pg_engine) as session:
         if row != "":
             cars_info = row[0]
             cars_help = str(cars_info).split(", ")
-            cars_make.append(cars_help[0])
-            cars_model.append(cars_help[1])
-            cars_year_made.append(cars_help[2])
+            cars_transmission.append(cars_help[0])
+            cars_make.append(cars_help[1])
+            cars_model.append(cars_help[2])
+            cars_year_made.append(cars_help[3])
     print(cars_make)
     print(cars_model)
     print(cars_year_made)
