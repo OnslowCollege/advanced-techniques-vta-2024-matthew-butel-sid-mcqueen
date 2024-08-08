@@ -52,6 +52,7 @@ with Session(pg_engine) as session:
     for row in result:
         if row != "":
             cars_info = row[0]
+            print(cars_info.make)
             cars_help = str(cars_info).split(", ")
             cars_transmission.append(cars_help[0])
             cars_make.append(cars_help[1])
