@@ -35,7 +35,7 @@ class Cars(Base):
 
     def __repr__(self) -> str:
         """Go away pep8."""
-        return f" {self.transmission}, {self.make}, {self.model}, {self.year_made}"
+        return f"{self.ids}, {self.transmission}, {self.make}, {self.model}, {self.year_made, self.mileage, self.price}"
 
 
 Base.metadata.create_all(pg_engine)
@@ -58,6 +58,3 @@ with Session(pg_engine) as session:
             cars_make.append(cars_help[1])
             cars_model.append(cars_help[2])
             cars_year_made.append(cars_help[3])
-    print(cars_make)
-    print(cars_model)
-    print(cars_year_made)
