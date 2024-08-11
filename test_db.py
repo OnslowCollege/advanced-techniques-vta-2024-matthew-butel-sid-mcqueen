@@ -14,6 +14,8 @@ pg_engine = create_engine(
 )
 
 class Base(DeclarativeBase):
+    """Go away pep8."""
+
     pass
 
 class User_Info(Base):
@@ -27,6 +29,20 @@ class User_Info(Base):
     scc: Mapped[int] = mapped_column(Integer)
     card_name: Mapped[str] = mapped_column(String(255))
     expire_date: Mapped[int] = mapped_column(Integer)
+
+    def inserting():
+        """Go away pep8."""
+
+        test_inserting = insert(User_Info).values(
+            username="Matthew",
+            password="MB",
+            card_number=1234,
+            scc=333,
+            card_name="Matthew",
+            expire_date=23,
+        )
+
+        print(test_inserting)
 class Cars(Base):
     """Go away pep8."""
 
@@ -71,3 +87,6 @@ with Session(pg_engine) as session:
             print(cars_info.mileage)
             print(cars_info.price)
             cars_help = str(cars_info).split(", ")
+
+test_inserting = insert(user_info)
+User_Info.inserting()
