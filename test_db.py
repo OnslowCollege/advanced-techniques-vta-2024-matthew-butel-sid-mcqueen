@@ -55,7 +55,6 @@ with Session(pg_engine) as session:
             print(cars_info.ids)
             print(cars_info.transmission)
             print(cars_info.make)
-            print(cars_info.price)
             print(cars_info.model)
             print(cars_info.year_made)
             print(cars_info.mileage)
