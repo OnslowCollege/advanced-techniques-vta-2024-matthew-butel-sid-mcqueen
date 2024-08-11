@@ -1,13 +1,18 @@
-CREATE DATABASE carsDB
-CREATE TABLE(
+CREATE DATABASE carsDB;
+CREATE TABLE cars (
     transmission varchar 255 NOT NULL,
     make varchar 255 NOT NULL,
     model varchar 255 NOT NULL,
     year_made varchar 255 NOT NULL,
     price int NOT NULL,
     mileage int NOT NULL
-)
-INSERT INTO carsDB
+);
+
+ALTER TABLE cars
+ADD ids SERIAL;
+
+
+INSERT INTO cars
 VALUES 
 ("Automatic", "Audi", "sedan", "2005", 9500, 123049),
 ("Automatic", "Mazda", "Hatchback", "1991", 4300, 175000),
@@ -59,4 +64,4 @@ VALUES
 ("Manual", "Ford", "Ute", "2018", 120000, 38000),
 ("Manual", "Suzuki", "Hatchback", "2010", 160000, 6900),
 ("Manual", "Toyota", "Sedan", "1990", 263000, 2420),
-("Manual", "Holden", "Ute", "2003", 49000, 45000),
+("Manual", "Holden", "Ute", "2003", 49000, 45000);
