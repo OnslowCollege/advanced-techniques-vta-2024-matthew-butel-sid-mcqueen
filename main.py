@@ -9,6 +9,8 @@ Date: 17 June - Present
 import remi.gui as GUI
 from remi import start, App
 
+from testingdb import Car, Cars
+
 class user_account():
     """Stores account details."""
 
@@ -36,12 +38,9 @@ class user_service():
         self.accounts.append(user)
         return user
 
-
-    def sign_in():
+    def sign_in(self):
         """Takes username and password and returns account."""
 
-class car_service():
-    """."""
 
 class order_service():
     """."""
@@ -50,7 +49,7 @@ class services():
     """Manages database services"""
 
     users: user_service = user_service()
-    cars: car_service = car_service()
+    cars: Cars = Cars()
     orders: order_service = order_service()
 
 
@@ -73,7 +72,7 @@ class UI(App):
     def main(self) -> GUI.VBox:
         """GUI for the home screen."""
         self.cart_label = GUI.Label("")
-        self.cart = 0
+        self.cart: list[Car] = []
         self.ui_container: GUI.VBox = GUI.VBox()
         self.ui_container.append(self.home_screen())
         return self.ui_container
@@ -101,7 +100,7 @@ class UI(App):
         return self.home_screen_
     
     def account_page(self, button: GUI.Button):
-        """GUI for the account info page"""
+        """GUI for the account info page."""
         
         self.ui_container.empty()
         
@@ -174,19 +173,17 @@ class UI(App):
 
         upper_page = GUI.HBox([title, button_box])
 
-        catalogue_placeholder: list = ["car1", "car2", "car3", "car4", "car5"]
+        catalogue: list[Car] = self.data.cars.get_cars()
         car_counter = 0
         catalogue_box = GUI.VBox([])
 
-        for car in catalogue_placeholder:
-            car_counter = car_counter + 1
-            place_holder_car = GUI.Label("Car" + str(car_counter))
+        for car in catalogue:
+            place_holder_car = GUI.Label(repr(car))
             add_to_cart = GUI.Button("Add To Cart")
-            self.remove_from_cart = GUI.Button("Remove From Cart")
-            car_row = GUI.HBox([place_holder_car, add_to_cart, self.remove_from_cart])
-            self.remove_from_cart.set_enabled(False)
+            car_row = GUI.HBox([place_holder_car, add_to_cart])
             catalogue_box.append(car_row)
             add_to_cart.onclick.do(self.onclick_addtocart)
+            add_to_cart.car = car
 
         self.account.onclick.do(self.account_page)
         return_button.onclick.do(self.onclick_return)
@@ -197,22 +194,35 @@ class UI(App):
         self.ui_container.append(self.catalogue_page_vbox)
 
     def onclick_addtocart(self, button: GUI.Button):
-        """When the user presses add to cart, add to cart and make remove pressable."""
+        """When the user presses add to cart, add to cart."""
 
-        self.remove_from_cart.set_enabled(True)
-        self.cart = self.cart + 1
-        self.cart_label.set_text("car")
+        self.cart.append(button.car)
     
     def view_cart_page(self, button: GUI.Button):
         """When the user chooses to view cart open they go to this page."""
 
         cart_title = GUI.Label("Your Cart")
+        cart_vbox = GUI.VBox()
+        for car in self.cart:
+            car_in_cart = GUI.Label(repr(car))
+            remove_from_cart_button = GUI.Button("Remove From Cart")
+            remove_from_cart_button.onclick.do(self.onclick_removefromcart)
+            remove_from_cart_button.car = car
+            cart_hbox: GUI.HBox = GUI.HBox([car_in_cart, remove_from_cart_button])
+            cart_vbox.append(cart_hbox)
+
         purchase_button = GUI.Button("Purchase")
         back_button = GUI.Button("Back To Catalogue")
         button_row = GUI.HBox([purchase_button, back_button])
-        view_cart_vbox = GUI.VBox([cart_title, self.cart_label, button_row])
+        view_cart_vbox = GUI.VBox([cart_title, cart_vbox, button_row])
         back_button.onclick.do(self.catalogue_page)
         self.ui_container.empty()
         self.ui_container.append(view_cart_vbox)
+
+    def onclick_removefromcart(self, button: GUI.Button):
+        """Remove item from cart."""
+
+        self.cart.remove(button.car)
+        self.view_cart_page(button)
 
 start(UI)
