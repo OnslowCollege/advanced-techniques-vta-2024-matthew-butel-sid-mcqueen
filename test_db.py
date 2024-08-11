@@ -16,6 +16,8 @@ pg_engine = create_engine(
 class Base(DeclarativeBase):
     pass
 
+class User_Info(Base):
+    """Go away pep8."""
 class Cars(Base):
     """Go away pep8."""
 
