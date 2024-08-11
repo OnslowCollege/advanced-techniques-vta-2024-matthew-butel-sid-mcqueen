@@ -1,6 +1,6 @@
 """OKOKOKOK."""
 
-from sqlalchemy import create_engine, Integer, select, String
+from sqlalchemy import create_engine, Integer, select, String, insert
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
@@ -18,6 +18,15 @@ class Base(DeclarativeBase):
 
 class User_Info(Base):
     """Go away pep8."""
+
+    __tablename__ = "user_info"
+
+    username: Mapped[str] = mapped_column(String(255))
+    password: Mapped[str] = mapped_column(String(255))
+    card_number: Mapped[int] = mapped_column(Integer)
+    scc: Mapped[int] = mapped_column(Integer)
+    card_name: Mapped[str] = mapped_column(String(255))
+    expire_date: Mapped[int] = mapped_column(Integer)
 class Cars(Base):
     """Go away pep8."""
 
