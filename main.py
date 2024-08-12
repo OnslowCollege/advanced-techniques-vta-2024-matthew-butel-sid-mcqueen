@@ -91,7 +91,7 @@ class UI(App):
         self.home_screen_final: GUI.VBox = GUI.VBox([self.home_screen_title, self.buttons])
         self.home_screen_logo: GUI.VBox = GUI.VBox([self.image, self.logotext])
         self.home_screen_: GUI.HBox = GUI.HBox([self.home_screen_logo, self.home_screen_final])
-
+        print("Catalogue page method called")
         self.account.onclick.do(self.account_page)
         self.catalogue.onclick.do(self.catalogue_page)
         return self.home_screen_
@@ -158,7 +158,7 @@ class UI(App):
 
     def catalogue_page(self, button: GUI.Label):
         """The catalogue for the site."""
-
+        print("Catalogue page method called")
         catalogue_title = GUI.Label("USED CAR CATALOGUE")
         catalogue_title_message = GUI.Label("Welcome to the Bazaar")
 
