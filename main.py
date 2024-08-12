@@ -129,7 +129,7 @@ class UI(App):
 
         self.signup_button.onclick.do(self.onclick_signup)
         self.return_button.onclick.do(self.onclick_return)
-        self.catalogue_button.onclick.do(self.catalogue_page)
+        self.catalogue_button.onclick.do(self.catalogue_page1)
 
         
         
@@ -155,6 +155,9 @@ class UI(App):
         expire_date = self.expire_date_input.get_value()
         card_name = self.card_name_input.get_value()
         self.logged_in_user = self.data.users.sign_up(username, password, card_number, scc, expire_date, card_name)
+
+    def catalogue_page1(self, button: GUI.Label):
+        print("yo")
 
     def catalogue_page(self, button: GUI.Label):
         """The catalogue for the site."""
