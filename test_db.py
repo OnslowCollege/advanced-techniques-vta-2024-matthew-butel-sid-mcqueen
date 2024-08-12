@@ -25,6 +25,7 @@ class User_Info(Base):
 
     __tablename__ = "user_info"
 
+    ids: Mapped[int] = mapped_column(Integer, primary_key=True)
     username: Mapped[str] = mapped_column(String(255))
     password: Mapped[str] = mapped_column(String(255))
     card_number: Mapped[int] = mapped_column(Integer)
