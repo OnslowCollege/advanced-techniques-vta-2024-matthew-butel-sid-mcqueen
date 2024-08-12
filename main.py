@@ -54,7 +54,7 @@ class UI(App):
     """The UI for the flash cards menu."""
     
     data: services = services()
-    logged_in_user: user_account = ()
+    #logged_in_user: user_account = ()
     
 
     def __init__(self, *args):
@@ -85,14 +85,13 @@ class UI(App):
         self.logotext = GUI.Label("AUTO BAZAAR")
         self.catalogue: GUI.Button = GUI.Button("Go to catalogue")
         self.account: GUI.Button = GUI.Button("Account settings")
-        
+
         # Put them into H and VBox's
         self.buttons: GUI.HBox = GUI.VBox([self.catalogue, self.account])
         self.home_screen_final: GUI.VBox = GUI.VBox([self.home_screen_title, self.buttons])
         self.home_screen_logo: GUI.VBox = GUI.VBox([self.image, self.logotext])
         self.home_screen_: GUI.HBox = GUI.HBox([self.home_screen_logo, self.home_screen_final])
         
-
         self.account.onclick.do(self.account_page)
         self.catalogue.onclick.do(self.catalogue_page)
         return self.home_screen_
@@ -157,9 +156,10 @@ class UI(App):
         card_name = self.card_name_input.get_value()
         self.logged_in_user = self.data.users.sign_up(username, password, card_number, scc, expire_date, card_name)
 
-    def catalogue_page(self, button: GUI.Label):
+    def catalogue_page(self, button: GUI.Button):
         """The catalogue for the site."""
-
+        
+        self.ui_container.empty()
         catalogue_title = GUI.Label("USED CAR CATALOGUE")
         catalogue_title_message = GUI.Label("Welcome to the Bazaar")
 
@@ -191,6 +191,7 @@ class UI(App):
         self.catalogue_page_vbox = GUI.VBox([upper_page, catalogue_box])
         self.ui_container.empty()
         self.ui_container.append(self.catalogue_page_vbox)
+        return self.catalogue_page_vbox
 
     def onclick_addtocart(self, button: GUI.Button):
         """When the user presses add to cart, add to cart."""
