@@ -72,7 +72,7 @@ class UI(App):
         self.cart: list[Car] = []
         self.cart_price: int = 0
         self.ui_container: GUI.VBox = GUI.VBox()
-        self.ui_container.append(self.catalogue_page(self.cart))
+        self.ui_container.append(self.home_screen())
         return self.ui_container
     
     def home_screen(self):
