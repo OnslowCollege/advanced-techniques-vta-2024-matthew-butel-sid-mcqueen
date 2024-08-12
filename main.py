@@ -156,9 +156,10 @@ class UI(App):
         card_name = self.card_name_input.get_value()
         self.logged_in_user = self.data.users.sign_up(username, password, card_number, scc, expire_date, card_name)
 
-    def catalogue_page(self, button: GUI.Button = None):
+    def catalogue_page(self, button: GUI.Button):
         """The catalogue for the site."""
         
+        self.ui_container.empty()
         catalogue_title = GUI.Label("USED CAR CATALOGUE")
         catalogue_title_message = GUI.Label("Welcome to the Bazaar")
 
