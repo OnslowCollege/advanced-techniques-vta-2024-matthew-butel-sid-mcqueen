@@ -224,7 +224,6 @@ class UI(App):
         """Remove item from cart."""
 
         self.cart.remove(button.car)
-        self.cart_price = self.cart_price - int(repr(car.price))
         self.view_cart_page(button)
 
 
