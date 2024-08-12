@@ -54,7 +54,7 @@ class UI(App):
     """The UI for the flash cards menu."""
     
     data: services = services()
-    logged_in_user: user_account = ()
+    #logged_in_user: user_account = ()
     
 
     def __init__(self, *args):
