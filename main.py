@@ -85,13 +85,12 @@ class UI(App):
         self.logotext = GUI.Label("AUTO BAZAAR")
         self.catalogue: GUI.Button = GUI.Button("Go to catalogue")
         self.account: GUI.Button = GUI.Button("Account settings")
-        
+
         # Put them into H and VBox's
         self.buttons: GUI.HBox = GUI.VBox([self.catalogue, self.account])
         self.home_screen_final: GUI.VBox = GUI.VBox([self.home_screen_title, self.buttons])
         self.home_screen_logo: GUI.VBox = GUI.VBox([self.image, self.logotext])
         self.home_screen_: GUI.HBox = GUI.HBox([self.home_screen_logo, self.home_screen_final])
-        
 
         self.account.onclick.do(self.account_page)
         self.catalogue.onclick.do(self.catalogue_page)
@@ -172,17 +171,17 @@ class UI(App):
 
         upper_page = GUI.HBox([title, button_box])
 
-        # catalogue: list[Car] = self.data.cars.get_cars()
+        catalogue: list[Car] = self.data.cars.get_cars()
         catalogue_box = GUI.VBox([])
 
-        # for car in catalogue:
-        #     place_holder_car = GUI.Label(repr(car))
-        #     car_price = GUI.Label("$" + repr(car.price))
-        #     add_to_cart = GUI.Button("Add To Cart")
-        #     car_row = GUI.HBox([place_holder_car, car_price, add_to_cart])
-        #     catalogue_box.append(car_row)
-        #     add_to_cart.onclick.do(self.onclick_addtocart)
-        #     add_to_cart.car = car
+        for car in catalogue:
+            place_holder_car = GUI.Label(repr(car))
+            car_price = GUI.Label("$" + repr(car.price))
+            add_to_cart = GUI.Button("Add To Cart")
+            car_row = GUI.HBox([place_holder_car, car_price, add_to_cart])
+            catalogue_box.append(car_row)
+            add_to_cart.onclick.do(self.onclick_addtocart)
+            add_to_cart.car = car
 
         self.account.onclick.do(self.account_page)
         return_button.onclick.do(self.onclick_return)
