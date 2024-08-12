@@ -129,7 +129,7 @@ class UI(App):
 
         self.signup_button.onclick.do(self.onclick_signup)
         self.return_button.onclick.do(self.onclick_return)
-        self.catalogue_button.onclick.do(self.catalogue_page1)
+        self.catalogue_button.onclick.do(self.catalogue_page)
 
         
         
