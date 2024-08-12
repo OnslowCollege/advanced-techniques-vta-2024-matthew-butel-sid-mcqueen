@@ -172,17 +172,17 @@ class UI(App):
 
         upper_page = GUI.HBox([title, button_box])
 
-        catalogue: list[Car] = self.data.cars.get_cars()
+        # catalogue: list[Car] = self.data.cars.get_cars()
         catalogue_box = GUI.VBox([])
 
-        for car in catalogue:
-            place_holder_car = GUI.Label(repr(car))
-            car_price = GUI.Label("$" + repr(car.price))
-            add_to_cart = GUI.Button("Add To Cart")
-            car_row = GUI.HBox([place_holder_car, car_price, add_to_cart])
-            catalogue_box.append(car_row)
-            add_to_cart.onclick.do(self.onclick_addtocart)
-            add_to_cart.car = car
+        # for car in catalogue:
+        #     place_holder_car = GUI.Label(repr(car))
+        #     car_price = GUI.Label("$" + repr(car.price))
+        #     add_to_cart = GUI.Button("Add To Cart")
+        #     car_row = GUI.HBox([place_holder_car, car_price, add_to_cart])
+        #     catalogue_box.append(car_row)
+        #     add_to_cart.onclick.do(self.onclick_addtocart)
+        #     add_to_cart.car = car
 
         self.account.onclick.do(self.account_page)
         return_button.onclick.do(self.onclick_return)
