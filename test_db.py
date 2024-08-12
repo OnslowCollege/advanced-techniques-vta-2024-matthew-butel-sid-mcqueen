@@ -31,7 +31,14 @@ class User_Info(Base):
     card_name: Mapped[str] = mapped_column(String(255))
     expire_date: Mapped[int] = mapped_column(Integer)
 
-user1 = User_Info()
+user1 = User_Info(
+    username="Matthew",
+    password="Mattheww",
+    card_number=123456,
+    scc=123,
+    card_name="Matthewww",
+    expire_date=12,
+)
 
 
 class Cars(Base):
