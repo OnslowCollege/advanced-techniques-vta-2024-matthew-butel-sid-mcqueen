@@ -72,7 +72,7 @@ class UI(App):
         self.cart: list[Car] = []
         self.cart_price: int = 0
         self.ui_container: GUI.VBox = GUI.VBox()
-        self.ui_container.append(self.home_screen())
+        self.ui_container.append(self.catalogue_page(self.cart))
         return self.ui_container
     
     def home_screen(self):
@@ -190,6 +190,7 @@ class UI(App):
         self.catalogue_page_vbox = GUI.VBox([upper_page, catalogue_box])
         self.ui_container.empty()
         self.ui_container.append(self.catalogue_page_vbox)
+        return self.catalogue_page_vbox
 
     def onclick_addtocart(self, button: GUI.Button):
         """When the user presses add to cart, add to cart."""
