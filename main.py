@@ -9,7 +9,7 @@ Date: 17 June - Present
 import remi.gui as GUI
 from remi import start, App
 
-from testingdb import Car, Cars
+#from testingdb import Car, Cars
 
 class user_account():
     """Stores account details."""
@@ -46,7 +46,7 @@ class services():
     """Manages database services"""
 
     users: user_service = user_service()
-    cars: Cars = Cars()
+  #  cars: Cars = Cars()
     orders: order_service = order_service()
 
 
@@ -146,7 +146,7 @@ class UI(App):
         self.ui_container.append(self.home_screen())
         
 
-    def onclick_signup(self):
+    def onclick_signup(self, button: GUI.Button):
         """Create a user account"""
 
         username = self.name_input.get_value()
@@ -224,7 +224,6 @@ class UI(App):
         """Remove item from cart."""
 
         self.cart.remove(button.car)
-        self.cart_price = self.cart_price - int(repr(car.price))
         self.view_cart_page(button)
 
 
