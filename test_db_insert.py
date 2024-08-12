@@ -5,6 +5,7 @@ from sqlalchemy.orm import (
     mapped_column,
     relationship,
     Session,
+    sessionmaker,
 )
 import sqlalchemy as sa
 
@@ -18,7 +19,7 @@ class Base(DeclarativeBase):
 
     pass
 
-
+Session = sessionmaker(bind=pg_engine)
 session = Session()
 
 
