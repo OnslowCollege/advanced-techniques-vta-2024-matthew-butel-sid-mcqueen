@@ -46,7 +46,7 @@ class services():
     """Manages database services"""
 
     users: user_service = user_service()
-  #  cars: Cars = Cars()
+    cars: Cars = Cars()
     orders: order_service = order_service()
 
 
