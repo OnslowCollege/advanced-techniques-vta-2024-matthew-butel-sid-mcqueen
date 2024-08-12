@@ -1,6 +1,6 @@
 """OKOKOKOK."""
 
-from sqlalchemy import create_engine, Integer, select, String, insert
+from sqlalchemy import create_engine, Integer, select, String, insert, MetaData
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
@@ -8,6 +8,7 @@ from sqlalchemy.orm import (
     relationship,
     Session,
 )
+import sqlalchemy as sa
 
 pg_engine = create_engine(
     "postgresql://postgres:123456@localhost:5432/postgres"
@@ -75,7 +76,7 @@ with Session(pg_engine) as session:
             print(cars_info.price)
             cars_help = str(cars_info).split(", ")
 
-test_inserting = insert(User_Info).values(
+test_inserting = insert(user_info).values(
     username="Matthew",
     password="MB",
     card_number=1234,
