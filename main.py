@@ -38,9 +38,6 @@ class user_service():
         self.accounts.append(user)
         return user
 
-    def sign_in(self):
-        """Takes username and password and returns account."""
-
 
 class order_service():
     """."""
@@ -73,6 +70,7 @@ class UI(App):
         """GUI for the home screen."""
         self.cart_label = GUI.Label("")
         self.cart: list[Car] = []
+        self.cart_price: int = 0
         self.ui_container: GUI.VBox = GUI.VBox()
         self.ui_container.append(self.home_screen())
         return self.ui_container
@@ -175,13 +173,13 @@ class UI(App):
         upper_page = GUI.HBox([title, button_box])
 
         catalogue: list[Car] = self.data.cars.get_cars()
-        car_counter = 0
         catalogue_box = GUI.VBox([])
 
         for car in catalogue:
             place_holder_car = GUI.Label(repr(car))
+            car_price = GUI.Label("$" + repr(car.price))
             add_to_cart = GUI.Button("Add To Cart")
-            car_row = GUI.HBox([place_holder_car, add_to_cart])
+            car_row = GUI.HBox([place_holder_car, car_price, add_to_cart])
             catalogue_box.append(car_row)
             add_to_cart.onclick.do(self.onclick_addtocart)
             add_to_cart.car = car
@@ -206,16 +204,18 @@ class UI(App):
         cart_vbox = GUI.VBox()
         for car in self.cart:
             car_in_cart = GUI.Label(repr(car))
+            self.cart_price = self.cart_price + int(repr(car.price))
             remove_from_cart_button = GUI.Button("Remove From Cart")
             remove_from_cart_button.onclick.do(self.onclick_removefromcart)
             remove_from_cart_button.car = car
             cart_hbox: GUI.HBox = GUI.HBox([car_in_cart, remove_from_cart_button])
             cart_vbox.append(cart_hbox)
 
+        price_label = GUI.Label("Total Cost: $" + str(self.cart_price))
         purchase_button = GUI.Button("Purchase")
         back_button = GUI.Button("Back To Catalogue")
         button_row = GUI.HBox([purchase_button, back_button])
-        view_cart_vbox = GUI.VBox([cart_title, cart_vbox, button_row])
+        view_cart_vbox = GUI.VBox([cart_title, price_label, cart_vbox, button_row])
         back_button.onclick.do(self.catalogue_page)
         self.ui_container.empty()
         self.ui_container.append(view_cart_vbox)
@@ -224,6 +224,8 @@ class UI(App):
         """Remove item from cart."""
 
         self.cart.remove(button.car)
+        self.cart_price = self.cart_price - int(repr(car.price))
         self.view_cart_page(button)
+
 
 start(UI)
