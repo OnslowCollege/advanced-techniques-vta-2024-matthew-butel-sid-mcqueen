@@ -19,6 +19,7 @@ class Base(DeclarativeBase):
 
     pass
 
+session = Session()
 class User_Info(Base):
     """Go away pep8."""
 
@@ -39,7 +40,7 @@ user1 = User_Info(
     card_name="Matthewww",
     expire_date=12,
 )
-
+session.add(info1)
 
 class Cars(Base):
     """Go away pep8."""
