@@ -48,43 +48,27 @@ class Cars(Base):
     
     def get_cars(self) -> list[Car]:
         """Sid Make this return all the cars from the database."""
+        Base.metadata.create_all(pg_engine)
+        cars = []
 
+        query = select(Cars)
         """Retrieve all cars from the database."""
-        # with Session(self.engine) as session:
-        #     query = select(Cars)
-        #     result = session.execute(query)
-        #     cars = []
-        #     for row in result.scalars():
-        #         cars.append(Car(
-        #             transmission=row.transmission,
-        #             make=row.make,
-        #             model=row.model,
-        #             year_made=row.year_made,
-        #             mileage=row.mileage,
-        #             price=row.price,
-        #             ids=row.ids
-        #         ))
-        # return cars
+        with Session(pg_engine) as session:
+            result = session.execute(query)
+            for row in result:
+                if row != "":
+                    cars_info = row[0]
+                    car = Car(
+                        transmission=cars_info.transmission,
+                        make=cars_info.make,
+                        model=cars_info.model,
+                        year_made=cars_info.year_made,
+                        mileage=cars_info.mileage,
+                        price=cars_info.price
+                    )
+                    cars.append(car)
 
-        # Return some test data
-        return [
-            Car(
-                transmission="Automatic",
-                make="Toyota",
-                model="Camry",
-                year_made="2022",
-                mileage=15000,
-                price=25000
-            ),
-            Car(
-                transmission="Manual",
-                make="Toyota",
-                model="Prias",
-                year_made="2023",
-                mileage=15000,
-                price=35000
-            )
-        ]
+        return cars
 
 
 
