@@ -31,6 +31,9 @@ class User_Info(Base):
     card_name: Mapped[str] = mapped_column(String(255))
     expire_date: Mapped[int] = mapped_column(Integer)
 
+user1 = User_Info()
+
+
 class Cars(Base):
     """Go away pep8."""
 
