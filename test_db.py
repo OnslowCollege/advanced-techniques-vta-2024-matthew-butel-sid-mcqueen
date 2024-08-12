@@ -40,7 +40,9 @@ user1 = User_Info(
     card_name="Matthewww",
     expire_date=12,
 )
-session.add(info1)
+session.add(user1)
+
+session.commit()
 
 class Cars(Base):
     """Go away pep8."""
@@ -86,12 +88,3 @@ with Session(pg_engine) as session:
             print(cars_info.mileage)
             print(cars_info.price)
             cars_help = str(cars_info).split(", ")
-
-test_inserting = insert(user_info).values(
-    username="Matthew",
-    password="MB",
-    card_number=1234,
-    scc=333,
-    card_name="Matthew",
-    expire_date=23,
-)
