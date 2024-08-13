@@ -1,6 +1,6 @@
 """OKOKOKOK."""
 
-from sqlalchemy import create_engine, Integer, select, String
+from sqlalchemy import create_engine, Integer, select, String, insert
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
@@ -14,7 +14,21 @@ pg_engine = create_engine(
 )
 
 class Base(DeclarativeBase):
+    """Go away pep8."""
+
     pass
+
+class User_Info(Base):
+    """Go away pep8."""
+
+    __tablename__ = "user_info"
+
+    username: Mapped[str] = mapped_column(String(255))
+    password: Mapped[str] = mapped_column(String(255))
+    card_number: Mapped[int] = mapped_column(Integer)
+    scc: Mapped[int] = mapped_column(Integer)
+    card_name: Mapped[str] = mapped_column(String(255))
+    expire_date: Mapped[int] = mapped_column(Integer)
 
 class Cars(Base):
     """Go away pep8."""
@@ -55,9 +69,25 @@ with Session(pg_engine) as session:
             print(cars_info.ids)
             print(cars_info.transmission)
             print(cars_info.make)
+<<<<<<< HEAD
             print(cars_info.price)
+=======
+>>>>>>> Catalogue-Everything
             print(cars_info.model)
             print(cars_info.year_made)
             print(cars_info.mileage)
             print(cars_info.price)
+<<<<<<< HEAD
             cars_help = str(cars_info).split(", ")
+=======
+            cars_help = str(cars_info).split(", ")
+
+test_inserting = insert(User_Info).values(
+    username="Matthew",
+    password="MB",
+    card_number=1234,
+    scc=333,
+    card_name="Matthew",
+    expire_date=23,
+)
+>>>>>>> Catalogue-Everything

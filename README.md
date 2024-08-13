@@ -35,8 +35,17 @@ sudo service postgresql start
 sudo su postgres -c psql template1
 ```
 
+<<<<<<< HEAD
 ## How to check server status and start it 
 
 service postgresql status
 
 sudo service postgresql start
+=======
+Then run...
+
+```sql
+ALTER USER postgres WITH PASSWORD '123456';
+\q
+```
+>>>>>>> Catalogue-Everything
