@@ -73,14 +73,8 @@ class Cars(Base):
 
 
 #Base.metadata.create_all(pg_engine)
-<<<<<<< HEAD
-
 #query = select(Cars)
 
-=======
-#query = select(Cars)
-
->>>>>>> Catalogue-Everything
 #with Session(pg_engine) as session:
 #    result = session.execute(query)
 #    for row in result:

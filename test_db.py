@@ -69,17 +69,11 @@ with Session(pg_engine) as session:
             print(cars_info.ids)
             print(cars_info.transmission)
             print(cars_info.make)
-<<<<<<< HEAD
             print(cars_info.price)
-=======
->>>>>>> Catalogue-Everything
             print(cars_info.model)
             print(cars_info.year_made)
             print(cars_info.mileage)
             print(cars_info.price)
-<<<<<<< HEAD
-            cars_help = str(cars_info).split(", ")
-=======
             cars_help = str(cars_info).split(", ")
 
 test_inserting = insert(User_Info).values(
@@ -90,4 +84,3 @@ test_inserting = insert(User_Info).values(
     card_name="Matthew",
     expire_date=23,
 )
->>>>>>> Catalogue-Everything

@@ -145,11 +145,7 @@ class UI(App):
         self.ui_container.append(self.home_screen())
 
     def onclick_signup(self, button: GUI.Button):
-<<<<<<< HEAD
-        """Create a user account."""
-=======
         """Create a user account"""
->>>>>>> Catalogue-Everything
 
         username = self.name_input.get_value()
         password = self.password_input.get_value()
