@@ -34,3 +34,10 @@ sudo service postgresql start
 ```bash
 sudo su postgres -c psql template1
 ```
+
+Then run...
+
+```sql
+ALTER USER postgres WITH PASSWORD '123456';
+\q
+```
