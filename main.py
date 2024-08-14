@@ -10,6 +10,7 @@ import remi.gui as GUI
 from remi import start, App
 
 from cars_db import Car, Cars
+from users_db import User_Info, Users
 
 class user_account():
     """Stores account details."""
@@ -25,19 +26,6 @@ class user_account():
         self.expiry_date: str = expire_date
 
 
-class user_service():
-    """List of user accounts."""
-
-    # Change this to be a database later.
-    accounts: list[user_account] = []
-
-    def sign_up(self, username, password, card_number, scc, expire_date, card_name):
-        """Take all the feilds and make a new account."""
-
-        user = user_account(username, password, card_number, scc, expire_date, card_name)
-        self.accounts.append(user)
-        return user
-
 
 class order_service():
     """."""
@@ -45,7 +33,7 @@ class order_service():
 class services():
     """Manages database services"""
 
-    users: user_service = user_service()
+    users: Users = Users()
     cars: Cars = Cars()
     orders: order_service = order_service()
 
@@ -148,13 +136,18 @@ class UI(App):
     def onclick_signup(self, button: GUI.Button):
         """Create a user account"""
 
-        username = self.name_input.get_value()
-        password = self.password_input.get_value()
-        card_number = self.number_input.get_value()
-        scc = self.scc_input.get_value()
-        expire_date = self.expire_date_input.get_value()
-        card_name = self.card_name_input.get_value()
-        self.logged_in_user = self.data.users.sign_up(username, password, card_number, scc, expire_date, card_name)
+        self.logged_in_user = User_Info(
+            username=self.name_input.get_value(),
+            password=self.password_input.get_value(),
+            card_number=self.number_input.get_value(),
+            scc=self.scc_input.get_value(),
+            card_name=self.card_name_input.get_value(),
+            expire_date=self.expire_date_input.get_value(),
+        )
+
+        self.data.users.add_user(self.logged_in_user)
+
+        self.catalogue_page()
 
     def catalogue_page(self, button: GUI.Button):
         """The catalogue for the site."""
