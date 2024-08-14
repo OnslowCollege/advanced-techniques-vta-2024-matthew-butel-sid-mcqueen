@@ -34,7 +34,6 @@ class User_Info:
         scc: int,
         card_name: int,
         expire_date: int,
-        ids: int = None,
     ):
         self.username = username
         self.password = password

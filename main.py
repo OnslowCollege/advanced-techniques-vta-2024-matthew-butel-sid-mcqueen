@@ -147,7 +147,7 @@ class UI(App):
 
         self.data.users.add_user(self.logged_in_user)
 
-        self.catalogue_page()
+        self.catalogue_page(button)
 
     def catalogue_page(self, button: GUI.Button):
         """The catalogue for the site."""
