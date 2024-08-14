@@ -20,9 +20,6 @@ class Base(DeclarativeBase):
     pass
 
 
-Base.metadata.create_all(pg_engine)
-
-
 class User_Info(Base):
     """Go away pep8."""
 
@@ -60,6 +57,7 @@ class Users:
 
     def __init__(self):
         self.Session = sessionmaker(bind=pg_engine)
+        Base.metadata.create_all(pg_engine)
 
     def add_user(self, user: User_Info):
         session = self.Session()
