@@ -41,6 +41,7 @@ class services():
 class UI(App):
     """The UI for the flash cards menu."""
     
+
     data: services = services()
     #logged_in_user: user_account = ()
     
@@ -61,6 +62,7 @@ class UI(App):
         self.cart_price: int = 0
         self.ui_container: GUI.VBox = GUI.VBox()
         self.ui_container.append(self.home_screen())
+        self.logged_in_user = None
         return self.ui_container
     
     def home_screen(self):
@@ -85,6 +87,13 @@ class UI(App):
         return self.home_screen_
     
     def account_page(self, button: GUI.Button):
+        if self.logged_in_user == None:
+            self.signup_page(button)
+            return
+
+        self.ui_container.empty()
+
+    def signup_page(self, button: GUI.Button):
         """GUI for the account info page."""
         
         self.ui_container.empty()
