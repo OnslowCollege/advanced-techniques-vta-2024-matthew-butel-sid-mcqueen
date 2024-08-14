@@ -9,9 +9,9 @@ from sqlalchemy.orm import (
     Session,
 )
 
-#pg_engine = create_engine(
-#    "postgresql://postgres:123456@localhost:5432/postgres"
-#)
+pg_engine = create_engine(
+    "postgresql://postgres:123456@localhost:5432/postgres"
+)
 
 class Car:
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
