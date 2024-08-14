@@ -23,21 +23,39 @@ class Base(DeclarativeBase):
 Session = sessionmaker(bind=pg_engine)
 session = Session()
 
-class User_Info(Base):
+class User_Info:
     """Go away pep8."""
+
+    def __init__(
+        self,
+        username: str,
+        password: str,
+        card_number: str,
+        scc: int,
+        card_name: int,
+        expire_date: int,
+        ids: int = None,
+    ):
+        self.username = username
+        self.password = password
+        self.card_number = card_number
+        self.scc = scc
+        self.card_name = card_name
+        self.expire_date = expire_date
+
+
+class Users(Base):
+    """."""
 
     __tablename__ = "user_info"
 
     ids: Mapped[int] = mapped_column(Integer, primary_key=True)
     username: Mapped[str] = mapped_column(String(255))
     password: Mapped[str] = mapped_column(String(255))
-    card_number: Mapped[int] = mapped_column(Integer)
+    card_number: Mapped[str] = mapped_column(String(255))
     scc: Mapped[int] = mapped_column(Integer)
     card_name: Mapped[str] = mapped_column(String(255))
-    expire_date: Mapped[int] = mapped_column(Integer)
-
-class Users(Base):
-    """."""
+    expire_date: Mapped[str] = mapped_column(String(255))
 
     def add_user(user: User_Info):
         session.add(user)
