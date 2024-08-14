@@ -90,7 +90,7 @@ class UI(App):
         self.ui_container.empty()
         
         account_title: GUI.Label = GUI.Label("Account Details")
-        
+        self.error_message: GUI.Label = GUI.Label()
         username_question = GUI.Label("Username here")
         self.name_input = GUI.TextInput()
         user_password = GUI.Label("Password here")
@@ -122,7 +122,18 @@ class UI(App):
         
         
         button_box = GUI.HBox([self.return_button, self.catalogue_button])
-        self.account_page_vbox = GUI.VBox([self.logotext, account_title, user_name, card_details, self.signup_button, button_box, self.image])
+        self.account_page_vbox = GUI.VBox(
+            [
+                self.logotext,
+                account_title,
+                user_name,
+                card_details,
+                self.signup_button,
+                button_box,
+                self.error_message,
+                self.image,
+            ]
+        )
         self.ui_container.append(self.account_page_vbox)
         return self.ui_container
 
@@ -190,22 +201,14 @@ class UI(App):
 
         try:
             self.data.users.add_user(self.logged_in_user)
-            self.show_success("Account created successfully!")
             self.catalogue_page(button)
         except Exception as e:
             self.show_error(f"Error creating account: {str(e)}")
 
     def show_error(self, message: str):
         """Display an error message to the user."""
-        error_label = GUI.Label(message)
-        error_label.style["color"] = "red"
-        self.account_page_vbox.append(error_label)
-
-    def show_success(self, message: str):
-        """Display a success message to the user."""
-        success_label = GUI.Label(message)
-        success_label.style["color"] = "green"
-        self.account_page_vbox.append(success_label)
+        self.error_message.set_text(message)
+        self.error_message.style["color"] = "red"
 
     def is_valid_expiry_date(self, date_string: str) -> bool:
         """Check if the expiry date is valid (MM/YY format)."""
