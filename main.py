@@ -12,30 +12,21 @@ from remi import start, App
 from cars_db import Car, Cars
 from users_db import User_Info, Users
 
-class user_account():
+class user_details:
     """Stores account details."""
 
-    def __init__(self, username, password, card_number, scc, expire_date, card_name):
+    def __init__(self, username, card_number):
         """."""
 
         self.username: str = username
-        self.password: str = password
-        self.cardnumber : str = card_number
-        self.scc: int = scc
-        self.cardname: str = card_name
-        self.expiry_date: str = expire_date
-
-
-
-class order_service():
-    """."""
+        self.cardnumber: str = card_number
 
 class services():
     """Manages database services"""
 
     users: Users = Users()
     cars: Cars = Cars()
-    orders: order_service = order_service()
+    # orders: order_service = order_service()
 
 
 class UI(App):
@@ -62,7 +53,7 @@ class UI(App):
         self.cart_price: int = 0
         self.ui_container: GUI.VBox = GUI.VBox()
         self.ui_container.append(self.home_screen())
-        self.logged_in_user: User_Info = None
+        self.logged_in_user: user_details = None
         return self.ui_container
     
     def home_screen(self):
@@ -210,7 +201,7 @@ class UI(App):
             return
 
         # If all valid, create the user
-        self.logged_in_user = User_Info(
+        user = User_Info(
             username=username,
             password=password,
             card_number=card_number,
@@ -220,7 +211,8 @@ class UI(App):
         )
 
         try:
-            self.data.users.add_user(self.logged_in_user)
+            self.data.users.add_user(user)
+            self.logged_in_user = user_details(username, card_number)
             self.catalogue_page(button)
         except Exception as e:
             self.show_error(f"Error creating account: {str(e)}")
