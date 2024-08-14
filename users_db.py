@@ -19,8 +19,10 @@ class Base(DeclarativeBase):
 
     pass
 
-class User_Info:
+class User_Info(Base):
     """Go away pep8."""
+
+    __tablename__ = "user_info"
 
     def __init__(
         self,
@@ -43,8 +45,6 @@ class User_Info:
 
 class Users(Base):
     """."""
-
-    __tablename__ = "user_info"
 
     # Session = sessionmaker(bind=pg_engine)
 
