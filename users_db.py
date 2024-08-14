@@ -63,3 +63,4 @@ class Users:
         session = self.Session()
         session.add(user)
         session.commit()
+
