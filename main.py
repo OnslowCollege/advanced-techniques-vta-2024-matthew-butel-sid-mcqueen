@@ -134,20 +134,96 @@ class UI(App):
         
 
     def onclick_signup(self, button: GUI.Button):
-        """Create a user account"""
+        """Create a user account with validation"""
 
+        # Check valid username
+        username = self.name_input.get_value().strip()
+        if not username:
+            self.show_error("Username is required.")
+            return
+        if len(username) < 3:
+            self.show_error("Username must be at least 3 characters long.")
+            return
+
+        # Check valid password
+        password = self.password_input.get_value()
+        if not password:
+            self.show_error("Password is required.")
+            return
+        if len(password) < 8:
+            self.show_error("Password must be at least 8 characters long.")
+            return
+
+        # Check valid card number
+        card_number = self.number_input.get_value().replace(" ", "")
+        if not card_number.isdigit() or len(card_number) != 16:
+            self.show_error("Invalid card number. Must be 16 digits.")
+            return
+
+        # Check valid SCC
+        scc = self.scc_input.get_value()
+        if not scc.isdigit() or len(scc) != 3:
+            self.show_error("Invalid SCC. Must be 3 digits.")
+            return
+
+        # Check Valid expiry date
+        expire_date = self.expire_date_input.get_value()
+        if not self.is_valid_expiry_date(expire_date):
+            self.show_error("Invalid expiry date. Use MM/YY format.")
+            return
+
+        # Check Valid card name
+        card_name = self.card_name_input.get_value().strip()
+        if not card_name:
+            self.show_error("Card name is required.")
+            return
+
+        # If all valid, create the user
         self.logged_in_user = User_Info(
-            username=self.name_input.get_value(),
-            password=self.password_input.get_value(),
-            card_number=self.number_input.get_value(),
-            scc=self.scc_input.get_value(),
-            card_name=self.card_name_input.get_value(),
-            expire_date=self.expire_date_input.get_value(),
+            username=username,
+            password=password,
+            card_number=card_number,
+            scc=int(scc),
+            card_name=card_name,
+            expire_date=expire_date,
         )
 
-        self.data.users.add_user(self.logged_in_user)
+        try:
+            self.data.users.add_user(self.logged_in_user)
+            self.show_success("Account created successfully!")
+            self.catalogue_page(button)
+        except Exception as e:
+            self.show_error(f"Error creating account: {str(e)}")
 
-        self.catalogue_page(button)
+    def show_error(self, message: str):
+        """Display an error message to the user."""
+        error_label = GUI.Label(message)
+        error_label.style["color"] = "red"
+        self.account_page_vbox.append(error_label)
+
+    def show_success(self, message: str):
+        """Display a success message to the user."""
+        success_label = GUI.Label(message)
+        success_label.style["color"] = "green"
+        self.account_page_vbox.append(success_label)
+
+    def is_valid_expiry_date(self, date_string: str) -> bool:
+        """Check if the expiry date is valid (MM/YY format)."""
+        import re
+        from datetime import datetime
+
+        if not re.match(r"^\d{2}/\d{2}$", date_string):
+            return False
+
+        month, year = map(int, date_string.split("/"))
+        if month < 1 or month > 12:
+            return False
+
+        current_year = datetime.now().year % 100
+        if year < current_year or year > current_year + 10:
+            return False
+
+        return True
 
     def catalogue_page(self, button: GUI.Button):
         """The catalogue for the site."""
