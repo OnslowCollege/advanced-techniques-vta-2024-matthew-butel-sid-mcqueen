@@ -92,6 +92,17 @@ class UI(App):
             return
 
         self.ui_container.empty()
+        username_display = GUI.Label(self.logged_in_user.username)
+        hidden_number = (
+            "**** **** **** " + self.logged_in_user.card_number[-4:]
+        )
+        private_card_number_dispay = GUI.Label(f"Card number: {hidden_number}")
+        user_details = GUI.VBox(
+            [username_display, private_card_number_dispay, self.catalogue]
+        )
+        self.ui_container.append(user_details)
+
+        self.catalogue.onclick.do(self.catalogue_page)
 
     def signup_page(self, button: GUI.Button):
         """GUI for the account info page."""
@@ -154,7 +165,7 @@ class UI(App):
         
 
     def onclick_signup(self, button: GUI.Button):
-        """Create a user account with validation"""
+        """Create a user account with validation."""
 
         # Check valid username
         username = self.name_input.get_value().strip()
