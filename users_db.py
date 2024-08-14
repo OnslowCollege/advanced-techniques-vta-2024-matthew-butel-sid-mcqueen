@@ -38,8 +38,8 @@ class User_Info(Base):
         password: str,
         card_number: str,
         scc: int,
-        card_name: int,
-        expire_date: int,
+        card_name: str,
+        expire_date: str,
         ids: int = None,
     ):
         self.username = username
