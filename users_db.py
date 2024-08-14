@@ -57,6 +57,6 @@ class Users(Base):
     card_name: Mapped[str] = mapped_column(String(255))
     expire_date: Mapped[str] = mapped_column(String(255))
 
-    def add_user(user: User_Info):
+    def add_user(self, user: User_Info):
         session.add(user)
         session.commit()
