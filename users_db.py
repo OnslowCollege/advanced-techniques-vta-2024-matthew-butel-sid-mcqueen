@@ -24,6 +24,14 @@ class User_Info(Base):
 
     __tablename__ = "user_info"
 
+    ids: Mapped[int] = mapped_column(Integer, primary_key=True)
+    username: Mapped[str] = mapped_column(String(255))
+    password: Mapped[str] = mapped_column(String(255))
+    card_number: Mapped[str] = mapped_column(String(255))
+    scc: Mapped[int] = mapped_column(Integer)
+    card_name: Mapped[str] = mapped_column(String(255))
+    expire_date: Mapped[str] = mapped_column(String(255))
+
     def __init__(
         self,
         username: str,
@@ -43,18 +51,10 @@ class User_Info(Base):
         self.ids = ids
 
 
-class Users(Base):
+class Users:
     """."""
 
     # Session = sessionmaker(bind=pg_engine)
-
-    ids: Mapped[int] = mapped_column(Integer, primary_key=True)
-    username: Mapped[str] = mapped_column(String(255))
-    password: Mapped[str] = mapped_column(String(255))
-    card_number: Mapped[str] = mapped_column(String(255))
-    scc: Mapped[int] = mapped_column(Integer)
-    card_name: Mapped[str] = mapped_column(String(255))
-    expire_date: Mapped[str] = mapped_column(String(255))
 
     def add_user(self, user: User_Info):
         session = Session()
