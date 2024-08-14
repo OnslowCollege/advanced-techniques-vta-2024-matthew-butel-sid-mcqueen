@@ -62,5 +62,6 @@ class Users:
         self.Session = sessionmaker(bind=pg_engine)
 
     def add_user(self, user: User_Info):
-        self.Session.add(user)
-        self.Session.commit()
+        session = self.Session()
+        session.add(user)
+        session.commit()
