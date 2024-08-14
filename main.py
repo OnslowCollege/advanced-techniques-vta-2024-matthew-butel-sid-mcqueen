@@ -201,6 +201,7 @@ class UI(App):
     def view_cart_page(self, button: GUI.Button):
         """When the user chooses to view cart open they go to this page."""
 
+        self.cart_price = 0
         cart_title = GUI.Label("Your Cart")
         cart_vbox = GUI.VBox()
         for car in self.cart:
@@ -225,6 +226,7 @@ class UI(App):
         """Remove item from cart."""
 
         self.cart.remove(button.car)
+
         self.view_cart_page(button)
 
 
