@@ -78,6 +78,7 @@ class UI(App):
         return self.home_screen_
     
     def account_page(self, button: GUI.Button):
+        """Check wether use is signed in or not the runs the correct page."""
         if self.logged_in_user == None:
             self.signup_page(button)
             return
