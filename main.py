@@ -195,7 +195,9 @@ class UI(App):
         # Check Valid expiry date
         expire_date = self.expire_date_input.get_value()
         if not self.is_valid_expiry_date(expire_date):
-            self.show_error("Invalid expiry date. Use MM/YY format.")
+            self.show_error(
+                "Invalid expiry date. Use MM/YY format. Use Valid Dates."
+            )
             return
 
         # Check Valid card name
