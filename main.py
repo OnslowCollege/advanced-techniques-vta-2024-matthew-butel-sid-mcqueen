@@ -9,6 +9,9 @@ Date: 17 June - Present
 import remi.gui as GUI
 from remi import start, App
 
+import re
+from datetime import datetime
+
 from cars_db import Car, Cars
 from users_db import User_Info, Users
 
@@ -225,8 +228,6 @@ class UI(App):
 
     def is_valid_expiry_date(self, date_string: str) -> bool:
         """Check if the expiry date is valid (MM/YY format)."""
-        import re
-        from datetime import datetime
 
         if not re.match(r"^\d{2}/\d{2}$", date_string):
             return False
