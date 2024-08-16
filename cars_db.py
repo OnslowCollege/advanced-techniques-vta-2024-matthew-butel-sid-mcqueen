@@ -24,6 +24,11 @@ class Car(Base):
     mileage: Mapped[int] = mapped_column(Integer)
     price: Mapped[int] = mapped_column(Integer)
 
+    # Relationship to Order_car
+    order_cars: Mapped["Order_Car"] = relationship(
+        "Order_Car", back_populates="car"
+    )
+
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
         self.ids = ids
         self.transmission = transmission
