@@ -9,6 +9,8 @@ from sqlalchemy.orm import (
     Session,
 )
 from db_base import Base, pg_engine
+from typing import List
+
 
 class Car:
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
@@ -35,6 +37,10 @@ class Cars(Base):
     year_made: Mapped[str] = mapped_column(String(255))
     mileage: Mapped[int] = mapped_column(Integer)
     price: Mapped[int] = mapped_column(Integer)
+
+    order_cars: Mapped[List["Order_Car"]] = relationship(
+        "Order_Car", back_populates="order", cascade="all, delete-orphan"
+    )
 
     def __repr__(self) -> str:
         """Go away pep8."""
