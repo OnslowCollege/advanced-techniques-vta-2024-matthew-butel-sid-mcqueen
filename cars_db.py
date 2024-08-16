@@ -47,10 +47,10 @@ class Cars:
         """."""
         cars = []
 
-        query = select(Cars).where(
+        query = select(Car).where(
             and_(
-                or_(transmission == "All", Cars.transmission == transmission),
-                or_(make == "All", Cars.make == make),
+                or_(transmission == "All", Car.transmission == transmission),
+                or_(make == "All", Car.make == make),
             )
         )
 
