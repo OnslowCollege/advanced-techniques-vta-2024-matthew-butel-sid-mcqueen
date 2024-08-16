@@ -259,7 +259,7 @@ class UI(App):
         button_box = GUI.VBox([self.account, return_button, view_cart])
 
         filter_transmission_label = GUI.Label("Filter Transmission:")
-        transmission_filter_options: list[str] = ["All", "Auto", "Manual"]
+        transmission_filter_options: list[str] = ["All", "Automatic", "Manual"]
         self.transmission_filter = GUI.DropDown(transmission_filter_options)
         filter_confirm = GUI.Button("Confirm")
         filter_hbox = GUI.HBox(
@@ -291,6 +291,7 @@ class UI(App):
         """."""
         self.catalogue_box.empty()
         transmission = self.transmission_filter.get_value()
+        print(transmission)
         catalogue: list[Car] = self.data.cars.get_cars(transmission)
 
         for car in catalogue:

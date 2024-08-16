@@ -1,6 +1,6 @@
 """OKOKOKOK."""
 
-from sqlalchemy import create_engine, Integer, select, String
+from sqlalchemy import create_engine, Integer, select, String, or_
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
@@ -52,7 +52,7 @@ class Cars(Base):
         cars = []
 
         query = select(Cars).where(
-            transmission == "All" or Cars.transmission == transmission
+            or_(transmission == "All", Cars.transmission == transmission)
         )
 
         """Retrieve all cars from the database."""
