@@ -1,26 +1,15 @@
-CREATE DATABASE carsDB;
-CREATE TABLE cars (
-    transmission varchar(255) NOT NULL,
-    make varchar(255) NOT NULL,
-    model varchar(255) NOT NULL,
-    year_made varchar(255) NOT NULL,
-    price int NOT NULL,
-    mileage int NOT NULL
-);
 
-ALTER TABLE cars
-ADD ids SERIAL;
 
 
 INSERT INTO cars (transmission, make, model, year_made, mileage, price)
 VALUES 
-('Automatic', 'Audi', 'sedan', '2005', 9500, 123049),
-('Automatic', 'Mazda', 'Hatchback', '1991', 4300, 175000),
-('Automatic', 'Toyota', 'Ute','2015', 21000, 40000),
-('Automatic', ' Mitsubishi', 'Coupe', '1994', 3000, 150000),
-('Automatic', 'Subaru', 'Sedan', '2008', 4000, 175000),
-('Automatic', 'Subaru', 'Sedan', '2018', 15000, 80000),
-('Automatic', 'Toyota', 'Van', '2015', 17500, 50000),
+('Automatic', 'Audi', 'sedan', '2005', 9500, 12304),
+('Automatic', 'Mazda', 'Hatchback', '1991', 4300, 17500),
+('Automatic', 'Toyota', 'Ute','2015', 21000, 4000),
+('Automatic', 'Mitsubishi', 'Coupe', '1994', 3000, 15000),
+('Automatic', 'Subaru', 'Sedan', '2008', 4000, 17500),
+('Automatic', 'Subaru', 'Sedan', '2018', 15000, 18000),
+('Automatic', 'Toyota', 'Van', '2015', 17500, 20000),
 ('Automatic', 'Ford', 'Ute', '2022', 35000, 20000 ),
 ('Automatic', 'BMW', 'Sedan', '1988', 235000, 9500),
 ('Automatic', 'Nissan', 'SUV', '2012', 129000, 12000),
@@ -48,14 +37,14 @@ VALUES
 ('Manual', 'Mazda', 'Hatchback', '2014', 109000, 17000),
 ('Manual', 'Volkswagen', 'Hatchback', '2001',114000, 9000 ),
 ('Manual', 'Honda', 'Hatchback', '1996', 280000, 6000 ),
-('Manual', 'Holden', 'Sedan', '2016', 30000, 120000),
-('Manual', 'MG', 'Coupe', '1971',86000, 16000 ),
+('Manual', 'Holden', 'Sedan', '2016', 30000, 12000),
+('Manual', 'MG', 'Coupe', '1971',86000, 6000 ),
 ('Manual', 'Nissan', 'Ute', '2021', 54000, 34000 ),
 ('Manual', 'Ssangyong', 'Ute', '2015',105000, 13000 ),
 ('Manual', 'Suzuki', 'Van', '2015', 95000, 9999 ),
 ('Manual', 'Jeep', 'Station Wagon', '2011', 128000, 31000),
-('Manual', 'Nissan', 'Coupe', '1972', 54000, 80000),
-('Manual', 'Holden', 'Ute', '2007', 118000, 52000),
+('Manual', 'Nissan', 'Coupe', '1972', 54000, 18000),
+('Manual', 'Holden', 'Ute', '2007', 118000, 42000),
 ('Manual', 'Subaru', 'Sedan', '2001', 122000, 28000),
 ('Manual', 'Alfa Romeo', 'Hatchback', '2014', 66000, 11000),
 ('Manual', 'Ford', 'Van', '2013', 169000, 16000),

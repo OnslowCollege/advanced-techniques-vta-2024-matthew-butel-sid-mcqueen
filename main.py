@@ -380,7 +380,7 @@ class UI(App):
 
         order = Order(
             date=datetime.today(),
-            # user=self.logged_in_user,
+            user=self.logged_in_user,
             total_price=self.cart_price,
         )
 
