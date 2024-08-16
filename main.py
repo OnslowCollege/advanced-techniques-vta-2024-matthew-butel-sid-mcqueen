@@ -260,10 +260,14 @@ class UI(App):
 
         filter_transmission_label = GUI.Label("Filter Transmission:")
         transmission_filter_options: list[str] = ["All", "Auto", "Manual"]
-        transmission_filter = GUI.DropDown(transmission_filter_options)
+        self.transmission_filter = GUI.DropDown(transmission_filter_options)
         filter_confirm = GUI.Button("Confirm")
         filter_hbox = GUI.HBox(
-            [filter_transmission_label, transmission_filter, filter_confirm]
+            [
+                filter_transmission_label,
+                self.transmission_filter,
+                filter_confirm,
+            ]
         )
         filter_confirm.onclick.do(self.catalogue_page)
 
@@ -284,8 +288,10 @@ class UI(App):
         return self.catalogue_page_vbox
 
     def load_catalogue(self):
+        """."""
         self.catalogue_box.empty()
-        catalogue: list[Car] = self.data.cars.get_cars()
+        transmission = self.transmission_filter.get_value()
+        catalogue: list[Car] = self.data.cars.get_cars(transmission)
 
         for car in catalogue:
             place_holder_car = GUI.Label(repr(car))
