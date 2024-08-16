@@ -361,6 +361,7 @@ class UI(App):
         button_row = GUI.HBox([purchase_button, back_button])
         view_cart_vbox = GUI.VBox([cart_title, price_label, cart_vbox, button_row])
         back_button.onclick.do(self.catalogue_page)
+        purchase_button.onclick.do(self.on_click_purchase)
         self.ui_container.empty()
         self.ui_container.append(view_cart_vbox)
 
@@ -368,8 +369,13 @@ class UI(App):
         """Remove item from cart."""
 
         self.cart.remove(button.car)
-
         self.view_cart_page(button)
+
+    def on_click_purchase(self, button: GUI.Button):
+        """."""
+        if self.logged_in_user == None:
+            self.signup_page(button)
+            return
 
 
 start(UI)
