@@ -293,7 +293,7 @@ class UI(App):
         self.make_filter.set_value("All")
         make_filter_all = GUI.VBox([make_filter_label, self.make_filter])
 
-        filter_confirm = GUI.Button("Confirm")
+        filter_confirm = GUI.Button("Update")
         filter_hbox = GUI.HBox(
             [
                 transmission_filter_all,
