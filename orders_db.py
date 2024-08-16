@@ -20,6 +20,7 @@ import sqlalchemy as sa
 from users_db import User_Info
 from cars_db import Car
 from datetime import date
+from typing import List
 
 
 pg_engine = create_engine(
@@ -48,6 +49,11 @@ class Order(Base):
         "User_Info", back_populates="orders"
     )
 
+    # Relationship to Order_Car
+    order_cars: Mapped[List["Order_Car"]] = relationship(
+        "Order_Car", back_populates="order", cascade="all, delete-orphan"
+    )
+
     def __init__(
         self,
         user: User_Info,
@@ -59,6 +65,7 @@ class Order(Base):
         self.user = user
         self.total_price = total_price
         self.id = id
+
 
 class Order_Car(Base):
     """Go away pep8."""
@@ -82,6 +89,7 @@ class Order_Car(Base):
         self.car = car
         self.id = id
 
+
 class Orders:
     """."""
 
@@ -91,5 +99,13 @@ class Orders:
 
     def add_order(self, order: Order):
         session = self.Session()
+        session.add(order)
+        session.commit()
+
+    def add_order_with_cars(self, order: Order, cars: List[Car]):
+        session = self.Session()
+        for car in cars:
+            order_car = Order_Car(order=order, car=car)
+            order.order_cars.append(order_car)
         session.add(order)
         session.commit()
