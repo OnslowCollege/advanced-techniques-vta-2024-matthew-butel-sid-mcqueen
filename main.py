@@ -14,6 +14,7 @@ from datetime import datetime
 
 from cars_db import Car, Cars
 from users_db import User_Info, Users
+from orders_db import Order, Order_Car, Orders
 
 class user_details:
     """Stores account details."""
@@ -29,7 +30,7 @@ class services():
 
     users: Users = Users()
     cars: Cars = Cars()
-    # orders: order_service = order_service()
+    orders: Orders = Orders()
 
 
 class UI(App):
@@ -377,5 +378,19 @@ class UI(App):
             self.signup_page(button)
             return
 
+        order = Order(
+            date=datetime.today(),
+            user=self.logged_in_user,
+            total_price=self.cart_price,
+        )
+
+        self.data.orders.add_order_with_cars(order, self.cart)
+        self.thank_you_page()
+
+    def thank_you_page(self, button: GUI.Button):
+        """Finalise purchase."""
+        thank_you_message = GUI.Label("Thank you for shopping at Auto Bazaar")
+        self.ui_container.empty()
+        self.ui_container.append(thank_you_message)
 
 start(UI)
