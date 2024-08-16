@@ -1,6 +1,6 @@
 """OKOKOKOK."""
 
-from sqlalchemy import create_engine, Integer, select, String, or_
+from sqlalchemy import create_engine, Integer, select, String, or_, and_
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
@@ -46,13 +46,16 @@ class Cars(Base):
         """Go away pep8."""
         return f"{self.make} {self.model} {self.year_made}"
 
-    def get_cars(self, transmission: str) -> list[Car]:
+    def get_cars(self, transmission: str, make: str) -> list[Car]:
         """."""
         Base.metadata.create_all(pg_engine)
         cars = []
 
         query = select(Cars).where(
-            or_(transmission == "All", Cars.transmission == transmission)
+            and_(
+                or_(transmission == "All", Cars.transmission == transmission),
+                or_(make == "All", Cars.make == make),
+            )
         )
 
         """Retrieve all cars from the database."""
