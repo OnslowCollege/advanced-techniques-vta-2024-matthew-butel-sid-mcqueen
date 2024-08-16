@@ -380,14 +380,14 @@ class UI(App):
 
         order = Order(
             date=datetime.today(),
-            user=self.logged_in_user,
+            # user=self.logged_in_user,
             total_price=self.cart_price,
         )
 
         self.data.orders.add_order_with_cars(order, self.cart)
         self.thank_you_page()
 
-    def thank_you_page(self, button: GUI.Button):
+    def thank_you_page(self):
         """Finalise purchase."""
         thank_you_message = GUI.Label("Thank you for shopping at Auto Bazaar")
         self.ui_container.empty()
