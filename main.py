@@ -269,7 +269,7 @@ class UI(App):
                 filter_confirm,
             ]
         )
-        filter_confirm.onclick.do(self.catalogue_page)
+        filter_confirm.onclick.do(self.load_catalogue)
 
         menus = GUI.HBox([title, button_box])
         upper_page = GUI.VBox([menus, filter_hbox])
@@ -287,7 +287,7 @@ class UI(App):
         self.ui_container.append(self.catalogue_page_vbox)
         return self.catalogue_page_vbox
 
-    def load_catalogue(self):
+    def load_catalogue(self, button: GUI.Button = None):
         """."""
         self.catalogue_box.empty()
         transmission = self.transmission_filter.get_value()
