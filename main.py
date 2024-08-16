@@ -265,30 +265,36 @@ class UI(App):
         filter_hbox = GUI.HBox(
             [filter_transmission_label, transmission_filter, filter_confirm]
         )
+        filter_confirm.onclick.do(self.catalogue_page)
 
         menus = GUI.HBox([title, button_box])
         upper_page = GUI.VBox([menus, filter_hbox])
 
+        self.catalogue_box = GUI.VBox([])
+
+        self.load_catalogue()
+
+        self.account.onclick.do(self.account_page)
+        return_button.onclick.do(self.onclick_return)
+        view_cart.onclick.do(self.view_cart_page)
+
+        self.catalogue_page_vbox = GUI.VBox([upper_page, self.catalogue_box])
+        self.ui_container.empty()
+        self.ui_container.append(self.catalogue_page_vbox)
+        return self.catalogue_page_vbox
+
+    def load_catalogue(self):
+        self.catalogue_box.empty()
         catalogue: list[Car] = self.data.cars.get_cars()
-        catalogue_box = GUI.VBox([])
 
         for car in catalogue:
             place_holder_car = GUI.Label(repr(car))
             car_price = GUI.Label("$" + repr(car.price))
             add_to_cart = GUI.Button("Add To Cart")
             car_row = GUI.HBox([place_holder_car, car_price, add_to_cart])
-            catalogue_box.append(car_row)
+            self.catalogue_box.append(car_row)
             add_to_cart.onclick.do(self.onclick_addtocart)
             add_to_cart.car = car
-
-        self.account.onclick.do(self.account_page)
-        return_button.onclick.do(self.onclick_return)
-        view_cart.onclick.do(self.view_cart_page)
-
-        self.catalogue_page_vbox = GUI.VBox([upper_page, catalogue_box])
-        self.ui_container.empty()
-        self.ui_container.append(self.catalogue_page_vbox)
-        return self.catalogue_page_vbox
 
     def onclick_addtocart(self, button: GUI.Button):
         """When the user presses add to cart, add to cart."""
