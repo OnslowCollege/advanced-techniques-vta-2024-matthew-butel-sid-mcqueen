@@ -7,6 +7,7 @@ from sqlalchemy.orm import (
     mapped_column,
     relationship,
     Session,
+    or_,
 )
 
 pg_engine = create_engine(
@@ -45,13 +46,16 @@ class Cars(Base):
     def __repr__(self) -> str:
         """Go away pep8."""
         return f"{self.make} {self.model} {self.year_made}"
-    
-    def get_cars(self) -> list[Car]:
-        """Sid Make this return all the cars from the database."""
+
+    def get_cars(self, transmission: str) -> list[Car]:
+        """."""
         Base.metadata.create_all(pg_engine)
         cars = []
 
-        query = select(Cars)
+        query = select(Cars).where(
+            or_(transmission == "All", Cars.transmission == transmission)
+        )
+
         """Retrieve all cars from the database."""
         with Session(pg_engine) as session:
             result = session.execute(query)
