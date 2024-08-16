@@ -21,18 +21,7 @@ from users_db import User_Info
 from cars_db import Car
 from datetime import date
 from typing import List
-
-
-pg_engine = create_engine(
-    "postgresql://postgres:123456@localhost:5432/postgres"
-)
-
-
-class Base(DeclarativeBase):
-    """Go away pep8."""
-
-    pass
-
+from db_base import Base, pg_engine
 
 class Order(Base):
     """Go away pep8."""

@@ -8,18 +8,7 @@ from sqlalchemy.orm import (
     sessionmaker,
 )
 import sqlalchemy as sa
-
-pg_engine = create_engine(
-    "postgresql://postgres:123456@localhost:5432/postgres"
-)
-
-
-class Base(DeclarativeBase):
-    """Go away pep8."""
-
-    pass
-
-
+from db_base import Base, pg_engine
 class User_Info(Base):
     """Go away pep8."""
 

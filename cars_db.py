@@ -8,10 +8,7 @@ from sqlalchemy.orm import (
     relationship,
     Session,
 )
-
-pg_engine = create_engine(
-    "postgresql://postgres:123456@localhost:5432/postgres"
-)
+from db_base import Base, pg_engine
 
 class Car:
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
@@ -25,9 +22,6 @@ class Car:
 
     def __repr__(self) -> str:
         return f"{self.make} {self.model} {self.year_made}"
-
-class Base(DeclarativeBase):
-    pass
 
 class Cars(Base):
     """Go away pep8."""
