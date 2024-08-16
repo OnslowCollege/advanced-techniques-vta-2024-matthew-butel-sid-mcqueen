@@ -49,6 +49,7 @@ class Order(Base):
     def __init__(
         self,
         user: User_Info,
+        date: date,
         id: int = None,
     ):
         self.date = date
@@ -56,15 +57,15 @@ class Order(Base):
         self.id = id
 
 
-class Users:
+class Orders:
     """."""
 
     def __init__(self):
         self.Session = sessionmaker(bind=pg_engine)
         Base.metadata.create_all(pg_engine)
 
-    def add_user(self, user: User_Info):
+    def add_order(self, order: Order):
         session = self.Session()
-        session.add(user)
+        session.add(order)
         session.commit()
 
