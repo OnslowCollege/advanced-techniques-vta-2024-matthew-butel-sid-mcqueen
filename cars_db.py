@@ -12,7 +12,17 @@ from db_base import Base, pg_engine
 from typing import List
 
 
-class Car:
+class Car(Base):
+    __tablename__ = "cars"
+
+    ids: Mapped[int] = mapped_column(Integer, primary_key=True)
+    transmission: Mapped[str] = mapped_column(String(255))
+    make: Mapped[str] = mapped_column(String(255))
+    model: Mapped[str] = mapped_column(String(255))
+    year_made: Mapped[str] = mapped_column(String(255))
+    mileage: Mapped[int] = mapped_column(Integer)
+    price: Mapped[int] = mapped_column(Integer)
+
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
         self.ids = ids
         self.transmission = transmission
@@ -25,30 +35,15 @@ class Car:
     def __repr__(self) -> str:
         return f"{self.make} {self.model} {self.year_made}"
 
-class Cars(Base):
+class Cars:
     """Go away pep8."""
 
-    __tablename__ = "cars"
-
-    ids: Mapped[int] = mapped_column(Integer, primary_key=True)
-    transmission: Mapped[str] = mapped_column(String(255))
-    make: Mapped[str] = mapped_column(String(255))
-    model: Mapped[str] = mapped_column(String(255))
-    year_made: Mapped[str] = mapped_column(String(255))
-    mileage: Mapped[int] = mapped_column(Integer)
-    price: Mapped[int] = mapped_column(Integer)
-
-    order_cars: Mapped[List["Order_Car"]] = relationship(
-        "Order_Car", back_populates="order", cascade="all, delete-orphan"
-    )
-
-    def __repr__(self) -> str:
-        """Go away pep8."""
-        return f"{self.make} {self.model} {self.year_made}"
+    def __init__(self):
+        self.Session = sessionmaker(bind=pg_engine)
+        Base.metadata.create_all(pg_engine)
 
     def get_cars(self, transmission: str, make: str) -> list[Car]:
         """."""
-        Base.metadata.create_all(pg_engine)
         cars = []
 
         query = select(Cars).where(
@@ -75,13 +70,3 @@ class Cars(Base):
                     cars.append(car)
 
         return cars
-
-
-
-#Base.metadata.create_all(pg_engine)
-#query = select(Cars)
-
-#with Session(pg_engine) as session:
-#    result = session.execute(query)
-#    for row in result:
-#        print(row)
