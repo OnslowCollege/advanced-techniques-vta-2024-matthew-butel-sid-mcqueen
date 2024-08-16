@@ -263,11 +263,12 @@ class UI(App):
         self.transmission_filter = GUI.DropDown(transmission_filter_options)
         self.transmission_filter.set_value("All")
         transmission_filter_all = GUI.VBox(
-            filter_transmission_label, self.transmission_filter
+            [filter_transmission_label, self.transmission_filter]
         )
 
         make_filter_label = GUI.Label("Filter Make:")
         make_filter_options: list[str] = [
+            "All",
             "Audi",
             "BMW",
             "Nissan",
@@ -288,10 +289,15 @@ class UI(App):
             "Jeep",
             "Alfa Romeo",
         ]
+        self.make_filter = GUI.DropDown(make_filter_options)
+        self.make_filter.set_value("All")
+        make_filter_all = GUI.VBox(make_filter_label, self.transmission_filter)
+
         filter_confirm = GUI.Button("Confirm")
         filter_hbox = GUI.HBox(
             [
                 transmission_filter_all,
+                make_filter_all,
                 filter_confirm,
             ]
         )
