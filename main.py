@@ -261,6 +261,7 @@ class UI(App):
         filter_transmission_label = GUI.Label("Filter Transmission:")
         transmission_filter_options: list[str] = ["All", "Automatic", "Manual"]
         self.transmission_filter = GUI.DropDown(transmission_filter_options)
+        self.transmission_filter.set_value("All")
         filter_confirm = GUI.Button("Confirm")
         filter_hbox = GUI.HBox(
             [
