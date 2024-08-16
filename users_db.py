@@ -23,10 +23,6 @@ class User_Info(Base):
     card_name: Mapped[str] = mapped_column(String(255))
     expire_date: Mapped[str] = mapped_column(String(255))
 
-    orders: Mapped[List["Order"]] = relationship(
-        "Order", back_populates="orders", cascade="all, delete-orphan"
-    )
-
     def __init__(
         self,
         username: str,
