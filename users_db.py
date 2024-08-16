@@ -7,6 +7,7 @@ from sqlalchemy.orm import (
     Session,
     sessionmaker,
 )
+from typing import List
 import sqlalchemy as sa
 from db_base import Base, pg_engine
 class User_Info(Base):
@@ -21,6 +22,10 @@ class User_Info(Base):
     scc: Mapped[int] = mapped_column(Integer)
     card_name: Mapped[str] = mapped_column(String(255))
     expire_date: Mapped[str] = mapped_column(String(255))
+
+    orders: Mapped[List["Order"]] = relationship(
+        "Order", back_populates="orders", cascade="all, delete-orphan"
+    )
 
     def __init__(
         self,
