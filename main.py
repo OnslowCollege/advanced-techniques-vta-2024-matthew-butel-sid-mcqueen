@@ -265,6 +265,29 @@ class UI(App):
         transmission_filter_all = GUI.VBox(
             filter_transmission_label, self.transmission_filter
         )
+
+        make_filter_label = GUI.Label("Filter Make:")
+        make_filter_options: list[str] = [
+            "Audi",
+            "BMW",
+            "Nissan",
+            "Hyundai",
+            "Ford",
+            "Honda",
+            "Kia",
+            "Toyota",
+            "Mercedes-Benz",
+            "Mitsbishi",
+            "VolksWagen",
+            "Mazda",
+            "MG",
+            "Ssangyong",
+            "Suzuki",
+            "Subaru",
+            "Holden",
+            "Jeep",
+            "Alfa Romeo",
+        ]
         filter_confirm = GUI.Button("Confirm")
         filter_hbox = GUI.HBox(
             [
