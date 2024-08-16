@@ -323,8 +323,8 @@ class UI(App):
         """."""
         self.catalogue_box.empty()
         transmission = self.transmission_filter.get_value()
-        print(transmission)
-        catalogue: list[Car] = self.data.cars.get_cars(transmission)
+        make = self.make_filter.get_value()
+        catalogue: list[Car] = self.data.cars.get_cars(transmission, make)
 
         for car in catalogue:
             place_holder_car = GUI.Label(repr(car))
