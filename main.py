@@ -258,10 +258,13 @@ class UI(App):
         return_button = GUI.Button("Return to Home")
         button_box = GUI.VBox([self.account, return_button, view_cart])
 
+        filter_transmission_label = GUI.Label("Filter Transmission:")
         transmission_filter_options: list[str] = ["All", "Auto", "Manual"]
         transmission_filter = GUI.DropDown(transmission_filter_options)
         filter_confirm = GUI.Button("Confirm")
-        filter_hbox = GUI.HBox([transmission_filter, filter_confirm])
+        filter_hbox = GUI.HBox(
+            [filter_transmission_label, transmission_filter, filter_confirm]
+        )
 
         menus = GUI.HBox([title, button_box])
         upper_page = GUI.VBox([menus, filter_hbox])
