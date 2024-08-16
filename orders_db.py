@@ -41,6 +41,7 @@ class Order(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     date: Mapped[date] = mapped_column(Date)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("user_info.ids"))
+    total_price: Mapped[int] = mapped_column(Integer)
 
     # Relationship to UserInfo
     user: Mapped["User_Info"] = relationship(
@@ -51,10 +52,12 @@ class Order(Base):
         self,
         user: User_Info,
         date: date,
+        total_price: int,
         id: int = None,
     ):
         self.date = date
         self.user = user
+        self.total_price = total_price
         self.id = id
 
 class Order_Car(Base):
@@ -67,7 +70,6 @@ class Order_Car(Base):
     car_id: Mapped[int] = mapped_column(Integer, ForeignKey("car.ids"))
 
     order: Mapped["Order"] = relationship("Order", back_populates="order_cars")
-
     car: Mapped["Car"] = relationship("Car", back_populates="order_cars")
 
     def __init__(
