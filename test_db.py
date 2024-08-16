@@ -41,9 +41,9 @@ user1 = User_Info(
     card_name="Matthewww",
     expire_date=12,
 )
-session.add(user1)
+# session.add(user1)
 
-session.commit()
+# session.commit()
 
 class Cars(Base):
     """Go away pep8."""
