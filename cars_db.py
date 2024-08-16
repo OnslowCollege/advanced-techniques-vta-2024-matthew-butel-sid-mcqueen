@@ -7,6 +7,7 @@ from sqlalchemy.orm import (
     mapped_column,
     relationship,
     Session,
+    sessionmaker,
 )
 from db_base import Base, pg_engine
 from typing import List
