@@ -7,7 +7,6 @@ from sqlalchemy.orm import (
     mapped_column,
     relationship,
     Session,
-    or_,
 )
 
 pg_engine = create_engine(
@@ -53,7 +52,7 @@ class Cars(Base):
         cars = []
 
         query = select(Cars).where(
-            or_(transmission == "All", Cars.transmission == transmission)
+            transmission == "All" or Cars.transmission == transmission
         )
 
         """Retrieve all cars from the database."""
