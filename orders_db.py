@@ -63,7 +63,7 @@ class Order_Car(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     order_id: Mapped[int] = mapped_column(Integer, ForeignKey("order.id"))
-    car_id: Mapped[int] = mapped_column(Integer, ForeignKey("car.ids"))
+    car_id: Mapped[int] = mapped_column(Integer, ForeignKey("cars.ids"))
 
     order: Mapped["Order"] = relationship("Order", back_populates="order_cars")
     car: Mapped["Car"] = relationship("Car", back_populates="order_cars")
