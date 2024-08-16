@@ -37,13 +37,13 @@ class Order(Base):
 
     __tablename__ = "order"
 
-    id: Mapped[int] = (mapped_column(Integer, primary_key=True),)
-    date: Mapped[date] = (mapped_column(Date),)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    date: Mapped[date] = mapped_column(Date)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("user_info.ids"))
 
     # Relationship to UserInfo
-    user: Mapped["UserInfo"] = relationship(
-        "UserInfo", back_populates="orders"
+    user: Mapped["User_Info"] = relationship(
+        "User_Info", back_populates="orders"
     )
 
     def __init__(
@@ -68,4 +68,3 @@ class Orders:
         session = self.Session()
         session.add(order)
         session.commit()
-
