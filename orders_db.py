@@ -18,6 +18,7 @@ from sqlalchemy.orm import (
 )
 import sqlalchemy as sa
 from users_db import User_Info
+from cars_db import Car
 from datetime import date
 
 
@@ -30,6 +31,30 @@ class Base(DeclarativeBase):
     """Go away pep8."""
 
     pass
+
+
+class Order_Car(Base):
+    """Go away pep8."""
+
+    __tablename__ = "order_car"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    order_id: Mapped[int] = mapped_column(Integer, ForeignKey("order.id"))
+    car_id: Mapped[int] = mapped_column(Integer, ForeignKey("car.ids"))
+
+    order: Mapped["Order"] = relationship("Order", back_populates="order_cars")
+
+    car: Mapped["Car"] = relationship("Car", back_populates="order_cars")
+
+    def __init__(
+        self,
+        user: User_Info,
+        date: date,
+        id: int = None,
+    ):
+        self.date = date
+        self.user = user
+        self.id = id
 
 
 class Order(Base):
