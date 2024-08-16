@@ -22,6 +22,7 @@ class User_Info(Base):
     scc: Mapped[int] = mapped_column(Integer)
     card_name: Mapped[str] = mapped_column(String(255))
     expire_date: Mapped[str] = mapped_column(String(255))
+    orders = relationship("Order", back_populates="user")
 
     def __init__(
         self,
