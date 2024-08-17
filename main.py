@@ -91,7 +91,9 @@ class UI(App):
         username_display = GUI.Label(
             "Username: " + self.logged_in_user.username
         )
-        hidden_number = "**** **** **** " + self.logged_in_user.cardnumber[-4:]
+        hidden_number = (
+            "**** **** **** " + self.logged_in_user.card_number[-4:]
+        )
         private_card_number_dispay = GUI.Label(f"Card number: {hidden_number}")
         user_details = GUI.VBox(
             [username_display, private_card_number_dispay, self.catalogue]
