@@ -80,10 +80,10 @@ class UI(App):
         username_display = GUI.Label(
             "Username: " + self.logged_in_user.username
         )
-        self.hidden_number = (
-            "**** **** **** " + self.logged_in_user.card_number[-4:]
+
+        private_card_number_dispay = GUI.Label(
+            f"Card number: {self.logged_in_user.hidden_number()}"
         )
-        private_card_number_dispay = GUI.Label(f"Card number: {self.hidden_number}")
         user_details = GUI.VBox(
             [username_display, private_card_number_dispay, self.catalogue]
         )
@@ -406,8 +406,10 @@ class UI(App):
         total_price_message = GUI.Label(
             "The total price of your order is $" + str(order.total_price)
         )
+
         card_charge_message = GUI.Label(
-            "This will be charged to the following card: " + self.hidden_number
+            "This will be charged to the following card: "
+            + self.logged_in_user.hidden_number()
         )
         thank_you_page_vbox = GUI.VBox(
             [
