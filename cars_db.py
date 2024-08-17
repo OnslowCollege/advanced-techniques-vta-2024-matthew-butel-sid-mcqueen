@@ -75,15 +75,6 @@ class Cars:
             for row in result:
                 if row != "":
                     cars_info = row[0]
-                    car = Car(
-                        ids=cars_info.ids,
-                        transmission=cars_info.transmission,
-                        make=cars_info.make,
-                        model=cars_info.model,
-                        year_made=cars_info.year_made,
-                        mileage=cars_info.mileage,
-                        price=cars_info.price,
-                    )
-                    cars.append(car)
+                    cars.append(cars_info)
 
         return cars
