@@ -401,11 +401,21 @@ class UI(App):
             car_in_cart = GUI.Label(repr(car))
             final_purchase_vbox.append(car_in_cart)
 
-        thank_you_page_vbox = GUI.VBox(
-            [thank_you_message, your_order_label, final_purchase_vbox]
+        total_price_message = GUI.Label(
+            "The total price of your order is $" + self.cart_price
         )
-        total_price_message = GUI.Label("The total price of your order is $" + self.cart_price)
-        card_charge_message = GUI.Label("This will be charged to the following card: " + )
+        card_charge_message = GUI.Label(
+            "This will be charged to the following card: " + self.hidden_number
+        )
+        thank_you_page_vbox = GUI.VBox(
+            [
+                thank_you_message,
+                your_order_label,
+                final_purchase_vbox,
+                total_price_message,
+                card_charge_message,
+            ]
+        )
         self.ui_container.empty()
         self.ui_container.append(thank_you_page_vbox)
 
