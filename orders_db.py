@@ -73,6 +73,10 @@ class Orders:
         with self.Session() as session:
             for car in cars:
                 car.order = order
+
+            if order.user:
+                order.user_id = order.user.ids
+
             session.add(order)
             session.flush()
             session.commit()
