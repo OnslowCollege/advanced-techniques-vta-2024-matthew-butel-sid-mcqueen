@@ -63,9 +63,9 @@ class Cars:
 
         query = select(Car).where(
             and_(
+                func.coalesce(Car.order_id, 0) == 0,
                 or_(transmission == "All", Car.transmission == transmission),
                 or_(make == "All", Car.make == make),
-                func.coalesce(Car.order_id, 0) == 0,
             )
         )
 
