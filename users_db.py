@@ -52,8 +52,16 @@ class Users:
         self.Session = sessionmaker(bind=pg_engine)
         Base.metadata.create_all(pg_engine)
 
-    def add_user(self, user: User_Info):
-        session = self.Session()
-        session.add(user)
-        session.commit()
+    def add_user(self, user: User_Info) -> User_Info:
+        with self.Session() as session:
+            session.add(user)
+            session.flush()  # This assigns the primary key if it's auto-generated
+            session.commit()
 
+            # Refresh the instance to ensure it's up-to-date with the database
+            session.refresh(user)
+
+            # Detach the instance from the session
+            session.expunge(user)
+
+        return user
