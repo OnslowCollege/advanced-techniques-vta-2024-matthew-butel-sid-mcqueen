@@ -25,12 +25,9 @@ class services():
 
 
 class UI(App):
-    """The UI for the flash cards menu."""
-    
+    """The UI for the website."""
 
     data: services = services()
-    #logged_in_user: user_account = ()
-    
 
     def __init__(self, *args):
         """Make the app work."""
