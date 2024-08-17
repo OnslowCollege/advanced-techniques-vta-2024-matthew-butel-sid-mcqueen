@@ -335,13 +335,9 @@ class UI(App):
             self.catalogue_box.append(car_row)
 
     def is_car_in_cart(self, car: Car) -> bool:
-        """Return a bool."""
-        car_in_cart: bool = False
+        """Return a bool indicating whether the car is in the cart."""
+        return any(cart_car.ids == car.ids for cart_car in self.cart)
 
-        for cart_car in self.cart:
-            car_in_cart |= car.ids == cart_car.ids
-
-        return car_in_cart
 
     def onclick_addtocart(self, button: GUI.Button):
         """When the user presses add to cart, add to cart."""
