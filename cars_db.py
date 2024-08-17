@@ -8,6 +8,7 @@ from sqlalchemy import (
     or_,
     and_,
     ForeignKey,
+    func,
 )
 from sqlalchemy.orm import (
     DeclarativeBase,
@@ -64,7 +65,7 @@ class Cars:
             and_(
                 or_(transmission == "All", Car.transmission == transmission),
                 or_(make == "All", Car.make == make),
-                Car.order_id == None,
+                func.coalesce(Car.order_id, 0) == 0,
             )
         )
 
