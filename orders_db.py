@@ -68,9 +68,18 @@ class Orders:
         session.add(order)
         session.commit()
 
-    def add_order_with_cars(self, order: Order, cars: List[Car]):
-        session = self.Session()
-        for car in cars:
-            car.order = order
-        session.add(order)
-        session.commit()
+    def add_order_with_cars(self, order: Order, cars: List[Car]) -> Order:
+        with self.Session() as session:
+            for car in cars:
+                car.order = order
+            session.add(order)
+            session.flush()
+            session.commit()
+
+            # Refresh the instance to ensure it's up-to-date with the database
+            session.refresh(order)
+
+            # Detach the instance from the session
+            session.expunge(order)
+
+        return order
