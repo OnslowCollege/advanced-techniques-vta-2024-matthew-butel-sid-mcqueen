@@ -18,7 +18,6 @@ from sqlalchemy.orm import (
 )
 import sqlalchemy as sa
 from users_db import User_Info
-from cars_db import Car
 from datetime import date
 from typing import List
 from db_base import Base, pg_engine
@@ -39,8 +38,8 @@ class Order(Base):
     )
 
     # Relationship to Order_Car
-    order_cars: Mapped[List["Order_Car"]] = relationship(
-        "Order_Car", back_populates="order", cascade="all, delete-orphan"
+    cars: Mapped[List["Car"]] = relationship(
+        "Car", back_populates="order", cascade="all, delete-orphan"
     )
 
     def __init__(
