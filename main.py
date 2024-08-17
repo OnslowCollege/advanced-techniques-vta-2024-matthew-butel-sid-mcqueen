@@ -323,6 +323,8 @@ class UI(App):
             car_mileage = GUI.Label(f"{repr(car.mileage)}km")
             car_button: GUI.Button
 
+            catalogue_car.style["width"] = "200px"
+
             if self.is_car_in_cart(car):
                 car_button = GUI.Button("In Cart")
                 car_button.set_enabled(False)
