@@ -409,7 +409,7 @@ class UI(App):
 
         card_charge_message = GUI.Label(
             "This will be charged to the following card: "
-            + self.logged_in_user.hidden_number()
+            + order.user.hidden_number()
         )
         thank_you_page_vbox = GUI.VBox(
             [
