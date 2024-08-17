@@ -322,8 +322,6 @@ class UI(App):
             car_price = GUI.Label("$" + repr(car.price))
             car_button: GUI.Button
 
-            print(str(car.ids))
-            print(str(self.is_car_in_cart(car)))
             if self.is_car_in_cart(car):
                 car_button = GUI.Button("In Cart")
                 car_button.set_enabled(False)
