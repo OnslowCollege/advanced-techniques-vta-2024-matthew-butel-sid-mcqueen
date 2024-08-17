@@ -336,12 +336,12 @@ class UI(App):
 
     def is_car_in_cart(self, car: Car) -> bool:
         """Return a bool."""
-        is_car_in_cart: bool = False
+        car_in_cart: bool = False
 
         for cart_car in self.cart:
-            is_car_in_cart |= car.ids == cart_car.ids
+            car_in_cart |= car.ids == cart_car.ids
 
-        return is_car_in_cart
+        return car_in_cart
 
     def onclick_addtocart(self, button: GUI.Button):
         """When the user presses add to cart, add to cart."""
