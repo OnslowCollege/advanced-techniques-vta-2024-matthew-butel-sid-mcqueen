@@ -56,29 +56,6 @@ class Order(Base):
         self.id = id
 
 
-class Order_Car(Base):
-    """Go away pep8."""
-
-    __tablename__ = "order_car"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    order_id: Mapped[int] = mapped_column(Integer, ForeignKey("order.id"))
-    car_id: Mapped[int] = mapped_column(Integer, ForeignKey("cars.ids"))
-
-    order: Mapped["Order"] = relationship("Order", back_populates="order_cars")
-    car: Mapped["Car"] = relationship("Car", back_populates="order_cars")
-
-    def __init__(
-        self,
-        order: Order,
-        car: Car,
-        id: int = None,
-    ):
-        self.order = order
-        self.car = car
-        self.id = id
-
-
 class Orders:
     """."""
 
