@@ -323,7 +323,9 @@ class UI(App):
             car_mileage = GUI.Label(f"{repr(car.mileage)}km")
             car_button: GUI.Button
 
-            catalogue_car.style["width"] = "300px"
+            catalogue_car.style["width"] = "250px"
+            car_mileage.style["width"] = "80px"
+            car_price.style["width"] = "60px"
 
             if self.is_car_in_cart(car):
                 car_button = GUI.Button("In Cart")
@@ -335,7 +337,7 @@ class UI(App):
                 car_button.car = car
 
             car_row = GUI.HBox(
-                [catalogue_car, car_price, car_mileage, car_button]
+                [catalogue_car, car_mileage, car_price, car_button]
             )
             self.catalogue_box.append(car_row)
 
