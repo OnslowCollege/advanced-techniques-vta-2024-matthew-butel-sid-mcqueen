@@ -319,7 +319,8 @@ class UI(App):
 
         for car in catalogue:
             catalogue_car = GUI.Label(repr(car))
-            car_price = GUI.Label("$" + repr(car.price))
+            car_price = GUI.Label(f"${repr(car.price)}")
+            car_mileage = GUI.Label(f"{repr(car.mileage)}km")
             car_button: GUI.Button
 
             if self.is_car_in_cart(car):
@@ -331,7 +332,9 @@ class UI(App):
                 car_button.onclick.do(self.onclick_addtocart)
                 car_button.car = car
 
-            car_row = GUI.HBox([catalogue_car, car_price, car_button])
+            car_row = GUI.HBox(
+                [catalogue_car, car_price, car_mileage, car_button]
+            )
             self.catalogue_box.append(car_row)
 
     def is_car_in_cart(self, car: Car) -> bool:

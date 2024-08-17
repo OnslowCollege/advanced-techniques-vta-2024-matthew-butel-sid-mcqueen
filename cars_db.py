@@ -48,7 +48,7 @@ class Car(Base):
         self.price = price
 
     def __repr__(self) -> str:
-        return f"{self.make} {self.model} {self.year_made} {self.mileage}km"
+        return f"{self.make} {self.model} {self.year_made}"
 
 class Cars:
     """Go away pep8."""
