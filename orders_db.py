@@ -78,21 +78,15 @@ class Orders:
             session.commit()
 
             # # Refresh the instance to ensure it's up-to-date with the database
-            # session.refresh(order)
+            session.refresh(order)
 
-            # for car in order.cars:
-            #     session.refresh(car)
-            #     session.expunge(car)
+            for car in order.cars:
+                session.refresh(car)
+                session.expunge(car)
 
-            # session.refresh(order.user)
-            # session.expunge(order.user)
-
-            # Use joinedload to eagerly load the cars relationship
-            order = (
-                session.query(Order)
-                .options(joinedload(Order.cars), joinedload(Order.user))
-                .get(order.id)
-            )
+            session.refresh(order.user)
+            order.user.hidden_number()
+            session.expunge(order.user)
 
             # Detach the instance from the session
             session.expunge(order)
