@@ -18,6 +18,7 @@ from sqlalchemy.orm import (
 )
 import sqlalchemy as sa
 from users_db import User_Info
+from cars_db import Car
 from datetime import date
 from typing import List
 from db_base import Base, pg_engine
@@ -93,7 +94,6 @@ class Orders:
     def add_order_with_cars(self, order: Order, cars: List[Car]):
         session = self.Session()
         for car in cars:
-            order_car = Order_Car(order=order, car=car)
-            order.order_cars.append(order_car)
+            car.order = order
         session.add(order)
         session.commit()

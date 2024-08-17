@@ -1,6 +1,14 @@
 """OKOKOKOK."""
 
-from sqlalchemy import create_engine, Integer, select, String, or_, and_
+from sqlalchemy import (
+    create_engine,
+    Integer,
+    select,
+    String,
+    or_,
+    and_,
+    ForeignKey,
+)
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
@@ -10,7 +18,7 @@ from sqlalchemy.orm import (
     sessionmaker,
 )
 from db_base import Base, pg_engine
-from typing import List
+from typing import List, Optional
 
 
 class Car(Base):
@@ -23,11 +31,11 @@ class Car(Base):
     year_made: Mapped[str] = mapped_column(String(255))
     mileage: Mapped[int] = mapped_column(Integer)
     price: Mapped[int] = mapped_column(Integer)
-
-    # Relationship to Order_car
-    order_cars: Mapped["Order_Car"] = relationship(
-        "Order_Car", back_populates="car"
+    order_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("order.id"), nullable=True
     )
+
+    order: Mapped["Order"] = relationship("Order", back_populates="cars")
 
     def __init__(self, transmission: str, make: str, model: str, year_made: str, mileage: int, price: int, ids: int = None):
         self.ids = ids
