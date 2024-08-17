@@ -55,6 +55,24 @@ class Users:
         self.Session = sessionmaker(bind=pg_engine)
         Base.metadata.create_all(pg_engine)
 
+    def get_user(self, user_id: int) -> User_Info:
+        user: User_Info
+
+        query = select(User_Info).where(
+            User_Info.ids == user_id),
+            )
+        )
+
+        """Retrieve all cars from the database."""
+        with Session(pg_engine) as session:
+            result = session.execute(query)
+            for row in result:
+                if row != "":
+                    cars_info = row[0]
+                    cars.append(cars_info)
+
+        return cars
+
     def add_user(self, user: User_Info) -> User_Info:
         with self.Session() as session:
             session.add(user)
