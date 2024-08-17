@@ -325,7 +325,7 @@ class UI(App):
 
             catalogue_car.style["width"] = "250px"
             car_mileage.style["width"] = "80px"
-            car_price.style["width"] = "60px"
+            car_price.style["width"] = "80px"
 
             if self.is_car_in_cart(car):
                 car_button = GUI.Button("In Cart")
@@ -335,6 +335,7 @@ class UI(App):
                 car_button = GUI.Button("Add To Cart")
                 car_button.onclick.do(self.onclick_addtocart)
                 car_button.car = car
+                car_button.style["padding"] = "5px"
 
             car_row = GUI.HBox(
                 [catalogue_car, car_mileage, car_price, car_button]
