@@ -318,18 +318,32 @@ class UI(App):
         catalogue: list[Car] = self.data.cars.get_cars(transmission, make)
 
         for car in catalogue:
-            place_holder_car = GUI.Label(repr(car))
+            catalogue_car = GUI.Label(repr(car))
             car_price = GUI.Label("$" + repr(car.price))
-            add_to_cart = GUI.Button("Add To Cart")
-            car_row = GUI.HBox([place_holder_car, car_price, add_to_cart])
+            car_button: GUI.Button
+
+            if self.is_car_in_cart(car):
+                car_button = GUI.Button("In Cart")
+                car_button.set_enabled(False)
+
+            else:
+                car_button = GUI.Button("Add To Cart")
+                car_button.onclick.do(self.onclick_addtocart)
+                car_button.car = car
+
+            car_row = GUI.HBox([catalogue_car, car_price, car_button])
             self.catalogue_box.append(car_row)
-            add_to_cart.onclick.do(self.onclick_addtocart)
-            add_to_cart.car = car
+
+    def is_car_in_cart(self, car: Car) -> bool:
+        """Return a bool."""
+
+        return self.cart.__contains__(car)
 
     def onclick_addtocart(self, button: GUI.Button):
         """When the user presses add to cart, add to cart."""
 
         self.cart.append(button.car)
+        self.load_catalogue(button)
     
     def view_cart_page(self, button: GUI.Button):
         """When the user chooses to view cart open they go to this page."""
