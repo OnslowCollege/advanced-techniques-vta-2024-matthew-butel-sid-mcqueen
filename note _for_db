@@ -1,0 +1,8 @@
+Things you need to get to be able to connect and run the database
+Extensions:
+PostgreSQL, by Weijan Chen
+Database Client JDBC, by Wejian Chen
+
+Once you've done that you will also need to pip install SQlAchemy 
+Pip:
+pip install SQLAlchemy
