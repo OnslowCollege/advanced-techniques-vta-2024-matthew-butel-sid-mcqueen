@@ -64,6 +64,7 @@ class Cars:
             and_(
                 or_(transmission == "All", Car.transmission == transmission),
                 or_(make == "All", Car.make == make),
+                Car.order_id == None,
             )
         )
 
