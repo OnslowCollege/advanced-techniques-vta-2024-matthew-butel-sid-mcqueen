@@ -50,7 +50,7 @@ class UI(App):
         return self.ui_container
     
     def home_screen(self):
-        """GUI for the home screen"""
+        """GUI for the home screen."""
         
         # Create the features for the menu
         self.home_screen_title: GUI.Label = GUI.Label("Buy a Car you know you'll love")
