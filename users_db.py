@@ -44,6 +44,9 @@ class User_Info(Base):
         self.expire_date = expire_date
         self.ids = ids
 
+    def hidden_number(self) -> str:
+        """Return the credit card number."""
+        return "**** **** **** " + self.card_number[-4:]
 
 class Users:
     """."""
