@@ -79,10 +79,10 @@ class UI(App):
         username_display = GUI.Label(
             "Username: " + self.logged_in_user.username
         )
-        hidden_number = (
+        self.hidden_number = (
             "**** **** **** " + self.logged_in_user.card_number[-4:]
         )
-        private_card_number_dispay = GUI.Label(f"Card number: {hidden_number}")
+        private_card_number_dispay = GUI.Label(f"Card number: {self.hidden_number}")
         user_details = GUI.VBox(
             [username_display, private_card_number_dispay, self.catalogue]
         )
@@ -209,7 +209,6 @@ class UI(App):
 
         try:
             self.logged_in_user = self.data.users.add_user(user)
-            # self.logged_in_user = user_details(username, card_number)
             self.catalogue_page(button)
         except Exception as e:
             self.show_error(f"Error creating account: {str(e)}")
@@ -403,8 +402,10 @@ class UI(App):
             final_purchase_vbox.append(car_in_cart)
 
         thank_you_page_vbox = GUI.VBox(
-            [thank_you_message, your_order_label, self.cart_vbox]
+            [thank_you_message, your_order_label, final_purchase_vbox]
         )
+        total_price_message = GUI.Label("The total price of your order is $" + self.cart_price)
+        card_charge_message = GUI.Label("This will be charged to the following card: " + )
         self.ui_container.empty()
         self.ui_container.append(thank_you_page_vbox)
 
