@@ -350,7 +350,7 @@ class UI(App):
 
         self.cart_price = 0
         cart_title = GUI.Label("Your Cart")
-        self.cart_vbox = GUI.VBox()
+        cart_vbox = GUI.VBox()
         for car in self.cart:
             car_in_cart = GUI.Label(repr(car))
             self.cart_price = self.cart_price + int(repr(car.price))
@@ -358,14 +358,14 @@ class UI(App):
             remove_from_cart_button.onclick.do(self.onclick_removefromcart)
             remove_from_cart_button.car = car
             cart_hbox: GUI.HBox = GUI.HBox([car_in_cart, remove_from_cart_button])
-            self.cart_vbox.append(cart_hbox)
+            cart_vbox.append(cart_hbox)
 
         price_label = GUI.Label("Total Cost: $" + str(self.cart_price))
         purchase_button = GUI.Button("Purchase")
         back_button = GUI.Button("Back To Catalogue")
         button_row = GUI.HBox([purchase_button, back_button])
         view_cart_vbox = GUI.VBox(
-            [cart_title, price_label, self.cart_vbox, button_row]
+            [cart_title, price_label, cart_vbox, button_row]
         )
         back_button.onclick.do(self.catalogue_page)
         purchase_button.onclick.do(self.on_click_purchase)
@@ -397,6 +397,11 @@ class UI(App):
         """Finalise purchase."""
         thank_you_message = GUI.Label("Thank you for shopping at Auto Bazaar")
         your_order_label = GUI.Label("You have purchased these cars:")
+        final_purchase_vbox: GUI.VBox = []
+        for car in self.cart:
+            car_in_cart = GUI.Label(repr(car))
+            final_purchase_vbox.append(car_in_cart)
+
         thank_you_page_vbox = GUI.VBox(
             [thank_you_message, your_order_label, self.cart_vbox]
         )
