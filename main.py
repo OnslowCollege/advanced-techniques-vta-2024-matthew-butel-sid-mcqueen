@@ -392,8 +392,7 @@ class UI(App):
 
         order = self.data.orders.add_order_with_cars(order, self.cart)
         self.cart = []
-        self.logged_in_user = order.user
-
+        self.logged_in_user = self.data.users.get_user(order.user_id)
         self.thank_you_page(order)
 
     def thank_you_page(self, order: Order):

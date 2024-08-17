@@ -58,20 +58,13 @@ class Users:
     def get_user(self, user_id: int) -> User_Info:
         user: User_Info
 
-        query = select(User_Info).where(
-            User_Info.ids == user_id),
-            )
-        )
+        query = select(User_Info).where(User_Info.ids == user_id)
 
-        """Retrieve all cars from the database."""
         with Session(pg_engine) as session:
-            result = session.execute(query)
-            for row in result:
-                if row != "":
-                    cars_info = row[0]
-                    cars.append(cars_info)
+            user = session.execute(query).scalar_one()
+            session.expunge(user)
 
-        return cars
+        return user
 
     def add_user(self, user: User_Info) -> User_Info:
         with self.Session() as session:
