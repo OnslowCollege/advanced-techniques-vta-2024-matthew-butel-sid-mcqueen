@@ -390,15 +390,16 @@ class UI(App):
             total_price=self.cart_price,
         )
 
-        self.data.orders.add_order_with_cars(order, self.cart)
-        self.thank_you_page()
+        order = self.data.orders.add_order_with_cars(order, self.cart)
+        self.cart = []
+        self.thank_you_page(order)
 
-    def thank_you_page(self):
+    def thank_you_page(self, order: Order):
         """Finalise purchase."""
         thank_you_message = GUI.Label("Thank you for shopping at Auto Bazaar")
         your_order_label = GUI.Label("You have purchased these cars:")
         final_purchase_vbox: GUI.VBox = []
-        for car in self.cart:
+        for car in order.cars:
             car_in_cart = GUI.Label(repr(car))
             final_purchase_vbox.append(car_in_cart)
 
