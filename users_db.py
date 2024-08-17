@@ -1,3 +1,4 @@
+"""User Database."""
 from sqlalchemy import create_engine, Integer, select, String, insert, MetaData
 from sqlalchemy.orm import (
     DeclarativeBase,

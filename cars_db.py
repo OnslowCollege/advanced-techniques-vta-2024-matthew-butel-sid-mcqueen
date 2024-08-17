@@ -1,4 +1,4 @@
-"""OKOKOKOK."""
+"""Car database."""
 
 from sqlalchemy import (
     create_engine,
