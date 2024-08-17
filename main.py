@@ -398,7 +398,7 @@ class UI(App):
         thank_you_message = GUI.Label("Thank you for shopping at Auto Bazaar")
         your_order_label = GUI.Label("You have purchased these cars:")
         thank_you_page_vbox = GUI.VBox(
-            thank_you_message, your_order_label, self.cart_vbox
+            [thank_you_message, your_order_label, self.cart_vbox]
         )
         self.ui_container.empty()
         self.ui_container.append(thank_you_page_vbox)
