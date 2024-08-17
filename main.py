@@ -418,8 +418,10 @@ class UI(App):
                 final_purchase_vbox,
                 total_price_message,
                 card_charge_message,
+                self.return_button,
             ]
         )
+        self.return_button.onclick.do(self.onclick_return)
         self.ui_container.empty()
         self.ui_container.append(thank_you_page_vbox)
 
