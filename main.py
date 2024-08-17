@@ -16,15 +16,6 @@ from cars_db import Car, Cars
 from users_db import User_Info, Users
 from orders_db import Order, Orders
 
-class user_details:
-    """Stores account details."""
-
-    def __init__(self, username, card_number):
-        """."""
-
-        self.username: str = username
-        self.cardnumber: str = card_number
-
 class services():
     """Manages database services"""
 
