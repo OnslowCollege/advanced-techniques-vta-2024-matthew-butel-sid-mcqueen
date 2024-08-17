@@ -236,7 +236,7 @@ class UI(App):
         return True
 
     def catalogue_page(self, button: GUI.Button):
-        """The catalogue for the site."""
+        """Catalogue for the site."""
         
         self.ui_container.empty()
         catalogue_title = GUI.Label("USED CAR CATALOGUE")
