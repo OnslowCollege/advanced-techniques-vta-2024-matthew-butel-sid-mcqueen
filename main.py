@@ -57,7 +57,7 @@ class UI(App):
         self.cart_price: int = 0
         self.ui_container: GUI.VBox = GUI.VBox()
         self.ui_container.append(self.home_screen())
-        self.logged_in_user: user_details = None
+        self.logged_in_user: User_Info = None
         return self.ui_container
     
     def home_screen(self):
@@ -218,8 +218,8 @@ class UI(App):
         )
 
         try:
-            self.data.users.add_user(user)
-            self.logged_in_user = user_details(username, card_number)
+            self.logged_in_user = self.data.users.add_user(user)
+            # self.logged_in_user = user_details(username, card_number)
             self.catalogue_page(button)
         except Exception as e:
             self.show_error(f"Error creating account: {str(e)}")
