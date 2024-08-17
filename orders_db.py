@@ -78,7 +78,10 @@ class Orders:
 
             # Refresh the instance to ensure it's up-to-date with the database
             session.refresh(order)
-            session.refresh(order.cars)
+
+            for car in order.cars:
+                session.refresh(car)
+                session.expunge(car)
 
             # Detach the instance from the session
             session.expunge(order)

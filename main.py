@@ -404,7 +404,7 @@ class UI(App):
             final_purchase_vbox.append(car_in_cart)
 
         total_price_message = GUI.Label(
-            "The total price of your order is $" + self.cart_price
+            "The total price of your order is $" + str(order.total_price)
         )
         card_charge_message = GUI.Label(
             "This will be charged to the following card: " + self.hidden_number
